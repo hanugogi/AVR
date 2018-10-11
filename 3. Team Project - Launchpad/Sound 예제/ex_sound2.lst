@@ -1,0 +1,705 @@
+Interrupt Vectors
+00000 940C 00AC JMP	__text_start|__start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0001E 940C 00EF JMP	_timer0_comp_isr    
+Program Code (text area)
+FILE: C:\Users\davidryu\Desktop\Sound2\sound.c
+(0001) //ICC-AVR application builder : 2005-05-30 오전 1:48:51
+(0002) // Target : M128
+(0003) // Crystal: 16Mhz
+(0004) //
+(0005) // Made by New Technology Company(N.T.C) in Korea.
+(0006) // DAEWOO RYU   
+(0007) // Email : davidryu@newtc.co.kr
+(0008) // 82-2-704-4774(TEL), 82-2-704-4733(FAX)
+(0009) // http://www.NewTC.co.kr
+(0010) //
+(0011) 
+(0012) 
+(0013) #include <iom128v.h>
+(0014) #include <macros.h>
+(0015) #include <math.h>
+(0016) //#include <stdio.h>
+(0017) 
+(0018) #define MaxLine	2
+(0019) #define MaxCol	16
+(0020) 
+(0021) #define ON 1
+(0022) #define OFF 2
+(0023) #define DELAYTIME 1
+(0024) #define DELAYTIME1 0
+(0025) /* 주파수(Hz)
+(0026) C1	523	// 도
+(0027) C1_	554
+(0028) D1	587	// 레
+(0029) D1_	622
+(0030) E1	659	// 미
+(0031) F1	699	// 파	
+(0032) F1_	740
+(0033) G1	784	// 솔
+(0034) G1_	831
+(0035) A1	880	// 라
+(0036) A1_	932
+(0037) B1	988	// 시
+(0038) 
+(0039) C2	C1*2	// 도
+(0040) C2_	C1_*2
+(0041) D2	D1*2	// 레
+(0042) D2_	D1_*2
+(0043) E2	E1*2	// 미
+(0044) F2	F1*2	// 파	
+(0045) F2_	F1_*2
+(0046) G2	G1*2	// 솔
+(0047) G2_	G1_*2
+(0048) A2	A2*2	// 라
+(0049) A2_	A2_*2
+(0050) B2	B2*2	// 시
+(0051) */
+(0052) 
+(0053) #define C1	630	// 도
+(0054) #define C1_	624
+(0055) #define D1	617	// 레
+(0056) #define D1_	611
+(0057) #define E1	606	// 미
+(0058) #define F1	600	// 파	
+(0059) #define F1_	595
+(0060) #define G1	591	// 솔
+(0061) #define G1_	586
+(0062) #define A1	582	// 라
+(0063) #define A1_	578
+(0064) #define B1	574	// 시
+(0065) #define C2	571	// 높은 도
+(0066) 
+(0067) #define DLY_1	DLY_4*4 // 온음표 
+(0068) #define DLY_2	DLY_4*2	// 2분 음표
+(0069) #define DLY_4	1500	// 4분 음표 
+(0070) #define DLY_8	DLY_4/2	// 8분 음표
+(0071) #define DLY_16	DLY_8/2	// 16분 음표*/
+(0072) 
+(0073) 
+(0074) 
+(0075) volatile int SoundState=ON;
+(0076) volatile int Soundonoff = ON;
+(0077) volatile int Geurm[50] = {G1, G1, A1, A1, G1, G1, E1, G1,G1, E1, E1, D1, G1, G1, A1, A1, G1, G1, E1, G1, E1, D1, E1, C1,};
+(0078) volatile int DLY[50] ={DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_2,DLY_4,DLY_4,DLY_4,DLY_4,DLY_1,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_2,DLY_4,DLY_4,DLY_4,DLY_4,DLY_1,}; 
+(0079) 
+(0080) void port_init(void)
+__text_start|__start:
+    000AC EFCF      LDI	R28,0xFF
+    000AD E1D0      LDI	R29,0x10
+    000AE BFCD      OUT	0x3D,R28
+    000AF BFDE      OUT	0x3E,R29
+    000B0 51CE      SUBI	R28,0x1E
+    000B1 40D0      SBCI	R29,0
+    000B2 EA0A      LDI	R16,0xAA
+    000B3 8308      ST	Y,R16
+    000B4 2400      CLR	R0
+    000B5 ECEC      LDI	R30,0xCC
+    000B6 E0F1      LDI	R31,1
+    000B7 E011      LDI	R17,1
+    000B8 3CEC      CPI	R30,0xCC
+    000B9 07F1      CPC	R31,R17
+    000BA F011      BEQ	0x00BD
+    000BB 9201      ST	Z+,R0
+    000BC CFFB      RJMP	0x00B8
+    000BD 8300      ST	Z,R16
+    000BE E8EC      LDI	R30,0x8C
+    000BF E0F0      LDI	R31,0
+    000C0 E0A0      LDI	R26,0
+    000C1 E0B1      LDI	R27,1
+    000C2 E011      LDI	R17,1
+    000C3 E000      LDI	R16,0
+    000C4 BF0B      OUT	0x3B,R16
+    000C5 35E8      CPI	R30,0x58
+    000C6 07F1      CPC	R31,R17
+    000C7 F021      BEQ	0x00CC
+    000C8 95C8      LPM
+    000C9 9631      ADIW	R30,1
+    000CA 920D      ST	X+,R0
+    000CB CFF9      RJMP	0x00C5
+    000CC 940E 0207 CALL	_main
+_exit:
+    000CE CFFF      RJMP	_exit
+_port_init:
+    000CF 2422      CLR	R2
+    000D0 BA2B      OUT	0x1B,R2
+(0081) {
+(0082)  PORTA = 0x00;
+(0083)  DDRA  = 0xFF;
+    000D1 EF8F      LDI	R24,0xFF
+    000D2 BB8A      OUT	0x1A,R24
+(0084)  PORTB = 0x00;
+    000D3 BA28      OUT	0x18,R2
+(0085)  DDRB  = 0xff;
+    000D4 BB87      OUT	0x17,R24
+(0086)  PORTC = 0x00; //m103 output only
+    000D5 BA25      OUT	0x15,R2
+(0087)  DDRC  = 0xFF;
+    000D6 BB84      OUT	0x14,R24
+(0088)  PORTD = 0x00;
+    000D7 BA22      OUT	0x12,R2
+(0089)  DDRD  = 0xFF;
+    000D8 BB81      OUT	0x11,R24
+(0090)  PORTE = 0x00;
+    000D9 B823      OUT	0x03,R2
+(0091)  DDRE  = 0x00;
+    000DA B822      OUT	0x02,R2
+(0092)  PORTF = 0x00;
+    000DB 9220 0062 STS	0x62,R2
+(0093)  DDRF  = 0x00;
+    000DD 9220 0061 STS	0x61,R2
+(0094)  PORTG = 0x00;
+    000DF 9220 0065 STS	0x65,R2
+(0095)  DDRG  = 0x1f;
+    000E1 E18F      LDI	R24,0x1F
+    000E2 9380 0064 STS	0x64,R24
+    000E4 9508      RET
+(0096) }
+(0097) 
+(0098) //TIMER0 initialize - prescale:128
+(0099) // WGM: CTC
+(0100) // desired value: 800Hz
+(0101) // actual value: 796.178Hz (-0.5%)
+(0102) void timer0_init(void)
+(0103) {
+(0104)  TCCR0 = 0x00; //stop
+_timer0_init:
+    000E5 2422      CLR	R2
+    000E6 BE23      OUT	0x33,R2
+(0105)  ASSR  = 0x00; //set async mode
+    000E7 BE20      OUT	0x30,R2
+(0106)  TCNT0 = 0x64; //set count
+    000E8 E684      LDI	R24,0x64
+    000E9 BF82      OUT	0x32,R24
+(0107)  OCR0  = 0x9C;
+    000EA E98C      LDI	R24,0x9C
+    000EB BF81      OUT	0x31,R24
+(0108)  TCCR0 = 0x1D; //start timer
+    000EC E18D      LDI	R24,0x1D
+    000ED BF83      OUT	0x33,R24
+    000EE 9508      RET
+_timer0_comp_isr:
+    000EF 922A      ST	-Y,R2
+    000F0 923A      ST	-Y,R3
+    000F1 938A      ST	-Y,R24
+    000F2 939A      ST	-Y,R25
+    000F3 B62F      IN	R2,0x3F
+    000F4 922A      ST	-Y,R2
+(0109) }
+(0110) 
+(0111) 
+(0112) #pragma interrupt_handler timer0_comp_isr:iv_TIM0_COMP
+(0113) void timer0_comp_isr(void)
+(0114) {
+(0115)  //compare occured TCNT0=OCR0
+(0116)  PORTD = PORTD ^ 0x80;
+    000F5 E880      LDI	R24,0x80
+    000F6 E090      LDI	R25,0
+    000F7 B222      IN	R2,0x12
+    000F8 2433      CLR	R3
+    000F9 2628      EOR	R2,R24
+    000FA 2639      EOR	R3,R25
+    000FB BA22      OUT	0x12,R2
+    000FC 9029      LD	R2,Y+
+    000FD BE2F      OUT	0x3F,R2
+    000FE 9199      LD	R25,Y+
+    000FF 9189      LD	R24,Y+
+    00100 9039      LD	R3,Y+
+    00101 9029      LD	R2,Y+
+    00102 9518      RETI
+_delay:
+  i                    --> R20
+  j                    --> R22
+  cnt                  --> R16
+    00103 940E 020E CALL	push_xgsetF000
+(0117) }
+(0118) 
+(0119) void delay(int cnt){
+(0120) 	 int i, j;
+(0121) 	 for(i=0; i<cnt; i++){
+    00105 2744      CLR	R20
+    00106 2755      CLR	R21
+    00107 C00A      RJMP	0x0112
+(0122) 	 	  for(j=0; j<600; j++);
+    00108 2766      CLR	R22
+    00109 2777      CLR	R23
+    0010A 5F6F      SUBI	R22,0xFF
+    0010B 4F7F      SBCI	R23,0xFF
+    0010C 3568      CPI	R22,0x58
+    0010D E0E2      LDI	R30,2
+    0010E 077E      CPC	R23,R30
+    0010F F3D4      BLT	0x010A
+    00110 5F4F      SUBI	R20,0xFF
+    00111 4F5F      SBCI	R21,0xFF
+    00112 1740      CP	R20,R16
+    00113 0751      CPC	R21,R17
+    00114 F39C      BLT	0x0108
+    00115 940C 0213 JMP	pop_xgsetF000
+(0123) 	 }
+(0124) }
+(0125) 
+(0126) //call this routine to initialize all peripherals
+(0127) void init_devices(void)
+(0128) {
+(0129)  //stop errant interrupts until set up
+(0130)  CLI(); //disable all interrupts
+_init_devices:
+    00117 94F8      BCLR	7
+(0131)  XDIV  = 0x00; //xtal divider
+    00118 2422      CLR	R2
+    00119 BE2C      OUT	0x3C,R2
+(0132)  XMCRA = 0x00; //external memory
+    0011A 9220 006D STS	0x6D,R2
+(0133)  port_init();
+    0011C DFB2      RCALL	_port_init
+(0134)  timer0_init();
+    0011D DFC7      RCALL	_timer0_init
+(0135) 
+(0136)  MCUCR = 0x00;
+    0011E 2422      CLR	R2
+    0011F BE25      OUT	0x35,R2
+(0137)  EICRA = 0x00; //extended ext ints
+    00120 9220 006A STS	0x6A,R2
+(0138)  EICRB = 0x00; //extended ext ints
+    00122 BE2A      OUT	0x3A,R2
+(0139)  EIMSK = 0x00;
+    00123 BE29      OUT	0x39,R2
+(0140)  TIMSK = 0x02; //timer interrupt sources
+    00124 E082      LDI	R24,2
+    00125 BF87      OUT	0x37,R24
+(0141)  ETIMSK = 0x00; //extended timer interrupt sources
+    00126 9220 007D STS	0x7D,R2
+(0142)  SEI(); //re-enable interrupts
+    00128 9478      BSET	7
+    00129 9508      RET
+(0143)  //all peripherals are now initialized
+(0144) }
+(0145) 
+(0146) void sound(int freq){
+(0147)  Soundonoff=ON; 
+_sound:
+  freq                 --> R16
+    0012A E081      LDI	R24,1
+    0012B E090      LDI	R25,0
+    0012C 9390 0103 STS	Soundonoff+1,R25
+    0012E 9380 0102 STS	Soundonoff,R24
+(0148)  OCR0 = freq;
+    00130 BF01      OUT	0x31,R16
+    00131 9508      RET
+(0149) }
+(0150) 
+(0151) void nosound(void){
+(0152)  Soundonoff=OFF;
+_nosound:
+    00132 E082      LDI	R24,2
+    00133 E090      LDI	R25,0
+    00134 9390 0103 STS	Soundonoff+1,R25
+    00136 9380 0102 STS	Soundonoff,R24
+(0153)  OCR0 = 0;
+    00138 2422      CLR	R2
+    00139 BE21      OUT	0x31,R2
+(0154)  delay(100);
+    0013A E604      LDI	R16,0x64
+    0013B E010      LDI	R17,0
+    0013C CFC6      RJMP	_delay
+_schoolsong2:
+  i                    --> R20
+    0013D 934A      ST	-Y,R20
+    0013E 935A      ST	-Y,R21
+(0155) }
+(0156) 
+(0157) void schoolsong2(void){
+(0158) 	 int i;
+(0159) 	 for(i=0;i<30;i++){
+    0013F 2744      CLR	R20
+    00140 2755      CLR	R21
+(0160) 	 	sound(Geurm[i]);
+    00141 E084      LDI	R24,4
+    00142 E091      LDI	R25,1
+    00143 01FA      MOVW	R30,R20
+    00144 0FEE      LSL	R30
+    00145 1FFF      ROL	R31
+    00146 0FE8      ADD	R30,R24
+    00147 1FF9      ADC	R31,R25
+    00148 8100      LD	R16,Z
+    00149 8111      LDD	R17,Z+1
+    0014A DFDF      RCALL	_sound
+(0161) 	 	delay(DLY[i]);
+    0014B E688      LDI	R24,0x68
+    0014C E091      LDI	R25,1
+    0014D 01FA      MOVW	R30,R20
+    0014E 0FEE      LSL	R30
+    0014F 1FFF      ROL	R31
+    00150 0FE8      ADD	R30,R24
+    00151 1FF9      ADC	R31,R25
+    00152 8100      LD	R16,Z
+    00153 8111      LDD	R17,Z+1
+    00154 DFAE      RCALL	_delay
+(0162) 	 	nosound();
+    00155 DFDC      RCALL	_nosound
+    00156 5F4F      SUBI	R20,0xFF
+    00157 4F5F      SBCI	R21,0xFF
+    00158 314E      CPI	R20,0x1E
+    00159 E0E0      LDI	R30,0
+    0015A 075E      CPC	R21,R30
+    0015B F32C      BLT	0x0141
+    0015C 9159      LD	R21,Y+
+    0015D 9149      LD	R20,Y+
+    0015E 9508      RET
+(0163) 	 }	 
+(0164) }
+(0165) 
+(0166) void schoolsong(void){
+(0167)      sound(G1);
+_schoolsong:
+    0015F E40F      LDI	R16,0x4F
+    00160 E012      LDI	R17,2
+    00161 DFC8      RCALL	_sound
+(0168) 	 delay(DLY_4);
+    00162 ED0C      LDI	R16,0xDC
+    00163 E015      LDI	R17,5
+    00164 DF9E      RCALL	_delay
+(0169) 	 nosound();
+    00165 DFCC      RCALL	_nosound
+(0170) 	
+(0171) 	 sound(G1);
+    00166 E40F      LDI	R16,0x4F
+    00167 E012      LDI	R17,2
+    00168 DFC1      RCALL	_sound
+(0172) 	 delay(DLY_4);
+    00169 ED0C      LDI	R16,0xDC
+    0016A E015      LDI	R17,5
+    0016B DF97      RCALL	_delay
+(0173) 	 nosound();
+    0016C DFC5      RCALL	_nosound
+(0174) 	
+(0175) 	 sound(A1);
+    0016D E406      LDI	R16,0x46
+    0016E E012      LDI	R17,2
+    0016F DFBA      RCALL	_sound
+(0176) 	 delay(DLY_4);
+    00170 ED0C      LDI	R16,0xDC
+    00171 E015      LDI	R17,5
+    00172 DF90      RCALL	_delay
+(0177)      nosound();
+    00173 DFBE      RCALL	_nosound
+(0178) 	
+(0179) 	 sound(A1);
+    00174 E406      LDI	R16,0x46
+    00175 E012      LDI	R17,2
+    00176 DFB3      RCALL	_sound
+(0180) 	 delay(DLY_4);
+    00177 ED0C      LDI	R16,0xDC
+    00178 E015      LDI	R17,5
+    00179 DF89      RCALL	_delay
+(0181)      nosound();
+    0017A DFB7      RCALL	_nosound
+(0182) 	
+(0183) 	 sound(G1);
+    0017B E40F      LDI	R16,0x4F
+    0017C E012      LDI	R17,2
+    0017D DFAC      RCALL	_sound
+(0184) 	 delay(DLY_4);
+    0017E ED0C      LDI	R16,0xDC
+    0017F E015      LDI	R17,5
+    00180 DF82      RCALL	_delay
+(0185) 	 nosound();
+    00181 DFB0      RCALL	_nosound
+(0186) 	
+(0187) 	 sound(G1);
+    00182 E40F      LDI	R16,0x4F
+    00183 E012      LDI	R17,2
+    00184 DFA5      RCALL	_sound
+(0188) 	 delay(DLY_4);
+    00185 ED0C      LDI	R16,0xDC
+    00186 E015      LDI	R17,5
+    00187 DF7B      RCALL	_delay
+(0189) 	 nosound();
+    00188 DFA9      RCALL	_nosound
+(0190) 	
+(0191) 	 sound(E1);
+    00189 E50E      LDI	R16,0x5E
+    0018A E012      LDI	R17,2
+    0018B DF9E      RCALL	_sound
+(0192) 	 delay(DLY_2);
+    0018C EB08      LDI	R16,0xB8
+    0018D E01B      LDI	R17,0xB
+    0018E DF74      RCALL	_delay
+(0193) 	 nosound();
+    0018F DFA2      RCALL	_nosound
+(0194) 	 
+(0195) 	 sound(G1);
+    00190 E40F      LDI	R16,0x4F
+    00191 E012      LDI	R17,2
+    00192 DF97      RCALL	_sound
+(0196) 	 delay(DLY_4);
+    00193 ED0C      LDI	R16,0xDC
+    00194 E015      LDI	R17,5
+    00195 DF6D      RCALL	_delay
+(0197) 	 nosound();
+    00196 DF9B      RCALL	_nosound
+(0198) 	 
+(0199) 	 sound(G1);
+    00197 E40F      LDI	R16,0x4F
+    00198 E012      LDI	R17,2
+    00199 DF90      RCALL	_sound
+(0200) 	 delay(DLY_4);
+    0019A ED0C      LDI	R16,0xDC
+    0019B E015      LDI	R17,5
+    0019C DF66      RCALL	_delay
+(0201) 	 nosound();
+    0019D DF94      RCALL	_nosound
+(0202) 	 
+(0203) 	 sound(E1);
+    0019E E50E      LDI	R16,0x5E
+    0019F E012      LDI	R17,2
+    001A0 DF89      RCALL	_sound
+(0204) 	 delay(DLY_4);
+    001A1 ED0C      LDI	R16,0xDC
+    001A2 E015      LDI	R17,5
+    001A3 DF5F      RCALL	_delay
+(0205) 	 nosound();
+    001A4 DF8D      RCALL	_nosound
+(0206) 	 
+(0207) 	 sound(E1);
+    001A5 E50E      LDI	R16,0x5E
+    001A6 E012      LDI	R17,2
+    001A7 DF82      RCALL	_sound
+(0208) 	 delay(DLY_4);
+    001A8 ED0C      LDI	R16,0xDC
+    001A9 E015      LDI	R17,5
+    001AA DF58      RCALL	_delay
+(0209) 	 nosound();
+    001AB DF86      RCALL	_nosound
+(0210) 	 
+(0211) 	 sound(D1);
+    001AC E609      LDI	R16,0x69
+    001AD E012      LDI	R17,2
+    001AE DF7B      RCALL	_sound
+(0212) 	 delay(DLY_1);
+    001AF E700      LDI	R16,0x70
+    001B0 E117      LDI	R17,0x17
+    001B1 DF51      RCALL	_delay
+(0213) 	 nosound();
+    001B2 DF7F      RCALL	_nosound
+(0214) 	 
+(0215) 	 sound(G1);
+    001B3 E40F      LDI	R16,0x4F
+    001B4 E012      LDI	R17,2
+    001B5 DF74      RCALL	_sound
+(0216) 	 delay(DLY_4);
+    001B6 ED0C      LDI	R16,0xDC
+    001B7 E015      LDI	R17,5
+    001B8 DF4A      RCALL	_delay
+(0217) 	 nosound();
+    001B9 DF78      RCALL	_nosound
+(0218) 	 
+(0219) 	 sound(G1);
+    001BA E40F      LDI	R16,0x4F
+    001BB E012      LDI	R17,2
+    001BC DF6D      RCALL	_sound
+(0220) 	 delay(DLY_4);
+    001BD ED0C      LDI	R16,0xDC
+    001BE E015      LDI	R17,5
+    001BF DF43      RCALL	_delay
+(0221) 	 nosound();
+    001C0 DF71      RCALL	_nosound
+(0222) 	 
+(0223) 	 sound(A1);
+    001C1 E406      LDI	R16,0x46
+    001C2 E012      LDI	R17,2
+    001C3 DF66      RCALL	_sound
+(0224) 	 delay(DLY_4);
+    001C4 ED0C      LDI	R16,0xDC
+    001C5 E015      LDI	R17,5
+    001C6 DF3C      RCALL	_delay
+(0225) 	 nosound();
+    001C7 DF6A      RCALL	_nosound
+(0226) 	 
+(0227) 	 sound(A1);
+    001C8 E406      LDI	R16,0x46
+    001C9 E012      LDI	R17,2
+    001CA DF5F      RCALL	_sound
+(0228) 	 delay(DLY_4);
+    001CB ED0C      LDI	R16,0xDC
+    001CC E015      LDI	R17,5
+    001CD DF35      RCALL	_delay
+(0229) 	 nosound();
+    001CE DF63      RCALL	_nosound
+(0230) 	 
+(0231) 	 sound(G1);
+    001CF E40F      LDI	R16,0x4F
+    001D0 E012      LDI	R17,2
+    001D1 DF58      RCALL	_sound
+(0232) 	 delay(DLY_4);
+    001D2 ED0C      LDI	R16,0xDC
+    001D3 E015      LDI	R17,5
+    001D4 DF2E      RCALL	_delay
+(0233) 	 nosound();
+    001D5 DF5C      RCALL	_nosound
+(0234) 	 
+(0235) 	 sound(G1);
+    001D6 E40F      LDI	R16,0x4F
+    001D7 E012      LDI	R17,2
+    001D8 DF51      RCALL	_sound
+(0236) 	 delay(DLY_4);
+    001D9 ED0C      LDI	R16,0xDC
+    001DA E015      LDI	R17,5
+    001DB DF27      RCALL	_delay
+(0237) 	 nosound();
+    001DC DF55      RCALL	_nosound
+(0238) 	 
+(0239) 	 sound(E1);
+    001DD E50E      LDI	R16,0x5E
+    001DE E012      LDI	R17,2
+    001DF DF4A      RCALL	_sound
+(0240) 	 delay(DLY_2);
+    001E0 EB08      LDI	R16,0xB8
+    001E1 E01B      LDI	R17,0xB
+    001E2 DF20      RCALL	_delay
+(0241) 	 nosound();
+    001E3 DF4E      RCALL	_nosound
+(0242) 	 
+(0243) 	 sound(G1);
+    001E4 E40F      LDI	R16,0x4F
+    001E5 E012      LDI	R17,2
+    001E6 DF43      RCALL	_sound
+(0244) 	 delay(DLY_4);
+    001E7 ED0C      LDI	R16,0xDC
+    001E8 E015      LDI	R17,5
+    001E9 DF19      RCALL	_delay
+(0245) 	 nosound();
+    001EA DF47      RCALL	_nosound
+(0246) 	 
+(0247) 	 sound(E1);
+    001EB E50E      LDI	R16,0x5E
+    001EC E012      LDI	R17,2
+    001ED DF3C      RCALL	_sound
+(0248) 	 delay(DLY_4);
+    001EE ED0C      LDI	R16,0xDC
+    001EF E015      LDI	R17,5
+    001F0 DF12      RCALL	_delay
+(0249) 	 nosound();
+    001F1 DF40      RCALL	_nosound
+(0250) 	 
+(0251) 	 sound(D1);
+    001F2 E609      LDI	R16,0x69
+    001F3 E012      LDI	R17,2
+    001F4 DF35      RCALL	_sound
+(0252) 	 delay(DLY_4);
+    001F5 ED0C      LDI	R16,0xDC
+    001F6 E015      LDI	R17,5
+    001F7 DF0B      RCALL	_delay
+(0253) 	 nosound();
+    001F8 DF39      RCALL	_nosound
+(0254) 	 
+(0255) 	 sound(E1);
+    001F9 E50E      LDI	R16,0x5E
+    001FA E012      LDI	R17,2
+    001FB DF2E      RCALL	_sound
+(0256) 	 delay(DLY_4);
+    001FC ED0C      LDI	R16,0xDC
+    001FD E015      LDI	R17,5
+    001FE DF04      RCALL	_delay
+(0257) 	 nosound();
+    001FF DF32      RCALL	_nosound
+(0258) 	 
+(0259) 	 sound(C1);
+    00200 E706      LDI	R16,0x76
+    00201 E012      LDI	R17,2
+    00202 DF27      RCALL	_sound
+(0260) 	 delay(DLY_1);
+    00203 E700      LDI	R16,0x70
+    00204 E117      LDI	R17,0x17
+    00205 DEFD      RCALL	_delay
+(0261) 	 nosound();	 
+    00206 CF2B      RJMP	_nosound
+(0262) }
+(0263) 
+(0264) 
+(0265) void main(void){
+(0266)      init_devices();
+_main:
+    00207 DF0F      RCALL	_init_devices
+    00208 C003      RJMP	0x020C
+(0267) 	
+(0268) 	 while(1){
+(0269) 		 while(1){		
+(0270) 			schoolsong2();
+    00209 DF33      RCALL	_schoolsong2
+(0271) 			schoolsong();
+(0272) 		 }		 
+(0273) 	}	 
+(0274) }
+FILE: <library>
+    0020A DF54      RCALL	_schoolsong
+    0020B CFFD      RJMP	0x0209
+    0020C CFFE      RJMP	0x020B
+    0020D 9508      RET
+push_xgsetF000:
+    0020E 937A      ST	-Y,R23
+    0020F 936A      ST	-Y,R22
+    00210 935A      ST	-Y,R21
+    00211 934A      ST	-Y,R20
+    00212 9508      RET
+pop_xgsetF000:
+    00213 9149      LD	R20,Y+
+    00214 9159      LD	R21,Y+
+    00215 9169      LD	R22,Y+
+    00216 9179      LD	R23,Y+
+    00217 9508      RET

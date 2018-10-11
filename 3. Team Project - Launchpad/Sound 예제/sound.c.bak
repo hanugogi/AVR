@@ -1,0 +1,323 @@
+//ICC-AVR application builder : 2005-05-30 오전 1:48:51
+// Target : M128
+// Crystal: 16Mhz
+//PORTC에 Data선이구요(DB0~DB7)
+//PORTD 0비트 : RS
+//      1비트 : RW
+//      2비트 : E 입니다.
+//PORTD 7,8비트 : 스피커
+//PORTD 6비트 : 싸이렌
+
+
+#include <iom128v.h>
+#include <macros.h>
+#include <math.h>
+#include <stdio.h>
+
+#define MaxLine	2
+#define MaxCol	16
+
+#define ON 1
+#define OFF 2
+#define DELAYTIME 1
+#define DELAYTIME1 0
+#define C1	523	// 도
+#define C1_	554
+#define D1	587	// 레
+#define D1_	622
+#define E1	659	// 미
+#define F1	699	// 파	
+#define F1_	740
+#define G1	784	// 솔
+#define G1_	831
+#define A1	880	// 라
+#define A1_	932
+#define B1	988	// 시
+
+#define C2	C1*2	// 도
+#define C2_	C1_*2
+#define D2	D1*2	// 레
+#define D2_	D1_*2
+#define E2	E1*2	// 미
+#define F2	F1*2	// 파	
+#define F2_	F1_*2
+#define G2	G1*2	// 솔
+#define G2_	G1_*2
+#define A2	A2*2	// 라
+#define A2_	A2_*2
+#define B2	B2*2	// 시
+
+#define DLY_1	DLY_4*4 // 온음표 
+#define DLY_2	DLY_4*2	// 2분 음표
+#define DLY_4	400	// 4분 음표
+#define DLY_8	DLY_4/2	// 8분 음표
+#define DLY_16	DLY_8/2	// 16분 음표
+
+
+int OneUsCounter=0;
+int OneMsCounter=0;
+int SoundTimeout=0;
+long T1HIGHCNT=0xFF, T1LOWCNT=0xF0;
+int SoundState=ON;
+int Soundonoff = ON;
+
+unsigned int noteon;
+
+
+// printf 함수 사용시 추가할 것.
+int putchar(char c)
+{
+    while (((UCSR0A>>UDRE0)&0x01) == 0) ;  // UDRE, data register empty
+        
+    UDR0 = c;
+    return c;
+}
+
+// scanf 함수 사용시 추가할 것.
+int getchar(void)
+{
+    while ((UCSR0A & 0x80) == 0);
+    return UDR0;
+}
+
+void port_init(void)
+{
+ PORTA = 0x00;
+ DDRA  = 0xFF;
+ PORTB = 0x00;
+ DDRB  = 0x00;
+ PORTC = 0x00; //m103 output only
+ DDRC  = 0xFF;
+ PORTD = 0x00;
+ DDRD  = 0xFF;
+ PORTE = 0x00;
+ DDRE  = 0x00;
+ PORTF = 0x00;
+ DDRF  = 0x00;
+ PORTG = 0x00;
+ DDRG  = 0x00;
+}
+
+//TIMER1 initialize - prescale:1
+// WGM: 0) Normal, TOP=0xFFFF
+// desired value: 1uSec
+// actual value:  0.995uSec (0.5%)
+void timer1_init(void)
+{
+ TCCR1B = 0x00; //stop
+ TCNT1H = 0xFF; //setup
+ TCNT1L = 0xF5;
+ OCR1AH = 0x00;
+ OCR1AL = 0x0B;
+ OCR1BH = 0x00;
+ OCR1BL = 0x0B;
+ OCR1CH = 0x00;
+ OCR1CL = 0x0B;
+ ICR1H  = 0x00;
+ ICR1L  = 0x0B;
+ TCCR1A = 0x00;
+ TCCR1B = 0x01; //start Timer
+}
+
+#pragma interrupt_handler timer1_ovf_isr:15
+void timer1_ovf_isr(void)
+{
+ OneUsCounter++;
+ if(OneUsCounter >=1000){
+ 	OneMsCounter++;
+	OneUsCounter=0;
+ }
+ if(Soundonoff==ON){
+ 	if(SoundState == ON){
+		PORTD=0x80;
+		SoundState=OFF;
+ 	}else{
+		PORTD=0xc0;
+		SoundState=ON;
+	}
+ }
+ 
+ //TIMER1 has overflowed
+ TCNT1H = T1HIGHCNT; //reload counter high value
+ TCNT1L = T1LOWCNT; //reload counter low value
+  
+}
+
+void delay(int delaytime){
+    int i,j;
+	for(i=0;i<=1000;i++){
+		for(j=0;j<=delaytime;j++){
+		}
+	}
+}
+
+//UART0 initialize
+// desired baud rate: 9600
+// actual: baud rate:9615 (0.2%)
+// char size: 8 bit
+// parity: Disabled
+void uart0_init(void)
+{
+ UCSR0B = 0x00; //disable while setting baud rate
+ UCSR0A = 0x00;
+ UCSR0C = 0x06;
+ UBRR0L = 0x67; //set baud rate lo
+ UBRR0H = 0x00; //set baud rate hi
+ UCSR0B = 0xF8;
+}
+
+//call this routine to initialize all peripherals
+void init_devices(void)
+{
+ //stop errant interrupts until set up
+ CLI(); //disable all interrupts
+ XDIV  = 0x00; //xtal divider
+ XMCRA = 0x00; //external memory
+ port_init();
+ timer1_init();
+ uart0_init();
+
+ MCUCR = 0x00;
+ EICRA = 0x00; //extended ext ints
+ EICRB = 0x00; //extended ext ints
+ EIMSK = 0x00;
+ TIMSK = 0x04; //timer interrupt sources
+ ETIMSK = 0x00; //extended timer interrupt sources
+ SEI(); //re-enable interrupts
+ //all peripherals are now initialized
+ OneUsCounter=0;
+ OneMsCounter=0;
+}
+
+void sound(int freq){
+ Soundonoff=ON; 
+ T1HIGHCNT = (0xFFFF-floor(10000000/freq))/0x100;
+ T1LOWCNT = 0xFFFF-floor(10000000/freq) - 0xFF00;
+}
+
+void nosound(void){
+ Soundonoff=OFF;
+ delay(10);
+}
+
+void Sailen(int onoff){
+ if(onoff==ON)
+ 	PORTD = PORTD|0x20;
+ else
+ 	PORTD = PORTD&0xBF;  
+}
+
+void schoolsong(void){
+     sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(A1);
+	 delay(DLY_4);
+     nosound();
+	
+	 sound(A1);
+	 delay(DLY_4);
+     nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(E1);
+	 delay(DLY_2);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(D1);
+	 delay(DLY_1);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(A1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(A1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_2);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(D1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(C1);
+	 delay(DLY_1);
+	 nosound();	 
+}
+
+void main(void){
+	 int i, delayustime=50;
+     init_devices();
+	 printf("Sound Test");
+	
+	 while(1){
+		 while(1){		 	
+			schoolsong();	
+			delay(1000);	
+			/*sound(E1);	
+			delay(100);
+			sound(C1);
+			delay(100);*/
+		 }		 
+	}	 
+}

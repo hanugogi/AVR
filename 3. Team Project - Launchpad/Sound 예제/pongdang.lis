@@ -1,0 +1,1010 @@
+                        .module pongdang.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\example\Sound\pongdang.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\example\Sound\pongdang.c
+ 0000           _freq::
+ 0000                   .blkb 2
+                        .area idata
+ 0000 40C4              .word 50240
+                        .area data(ram, con, rel)
+ 0002                   .dbfile C:\example\Sound\pongdang.c
+ 0002                   .blkb 2
+                        .area idata
+ 0002 C4CA              .word 51908
+                        .area data(ram, con, rel)
+ 0004                   .dbfile C:\example\Sound\pongdang.c
+ 0004                   .blkb 2
+                        .area idata
+ 0004 95D0              .word 53397
+                        .area data(ram, con, rel)
+ 0006                   .dbfile C:\example\Sound\pongdang.c
+ 0006                   .blkb 2
+                        .area idata
+ 0006 3BD3              .word 54075
+                        .area data(ram, con, rel)
+ 0008                   .dbfile C:\example\Sound\pongdang.c
+ 0008                   .blkb 2
+                        .area idata
+ 0008 17D8              .word 55319
+                        .area data(ram, con, rel)
+ 000A                   .dbfile C:\example\Sound\pongdang.c
+ 000A                   .blkb 2
+                        .area idata
+ 000A 7EDC              .word 56446
+                        .area data(ram, con, rel)
+ 000C                   .dbfile C:\example\Sound\pongdang.c
+ 000C                   .blkb 2
+                        .area idata
+ 000C 00E1              .word 57600
+                        .area data(ram, con, rel)
+ 000E                   .dbfile C:\example\Sound\pongdang.c
+ 000E                   .blkb 2
+                        .area idata
+ 000E 00E3              .word 58112
+                        .area data(ram, con, rel)
+ 0010                   .dbfile C:\example\Sound\pongdang.c
+ 0010                   .blkb 2
+                        .area idata
+ 0010 62E5              .word 58722
+                        .area data(ram, con, rel)
+ 0012                   .dbfile C:\example\Sound\pongdang.c
+ 0012                   .dbsym e freq _freq A[18:9]i
+ 0012           _cf::
+ 0012                   .blkb 1
+                        .area idata
+ 0012 64                .byte 100
+                        .area data(ram, con, rel)
+ 0013                   .dbfile C:\example\Sound\pongdang.c
+ 0013                   .dbsym e cf _cf c
+ 0013           _sec::
+ 0013                   .blkb 2
+                        .area idata
+ 0013 0000              .word 0
+                        .area data(ram, con, rel)
+ 0015                   .dbfile C:\example\Sound\pongdang.c
+ 0015                   .dbsym e sec _sec I
+ 0015           _tick::
+ 0015                   .blkb 2
+                        .area idata
+ 0015 0000              .word 0
+                        .area data(ram, con, rel)
+ 0017                   .dbfile C:\example\Sound\pongdang.c
+ 0017                   .dbsym e tick _tick I
+ 0017           _m_tick::
+ 0017                   .blkb 2
+                        .area idata
+ 0017 0000              .word 0
+                        .area data(ram, con, rel)
+ 0019                   .dbfile C:\example\Sound\pongdang.c
+ 0019                   .dbsym e m_tick _m_tick I
+ 0019           _m_reset::
+ 0019                   .blkb 2
+                        .area idata
+ 0019 0000              .word 0
+                        .area data(ram, con, rel)
+ 001B                   .dbfile C:\example\Sound\pongdang.c
+ 001B                   .dbsym e m_reset _m_reset I
+ 001B           _s_tick::
+ 001B                   .blkb 2
+                        .area idata
+ 001B 0000              .word 0
+                        .area data(ram, con, rel)
+ 001D                   .dbfile C:\example\Sound\pongdang.c
+ 001D                   .dbsym e s_tick _s_tick I
+ 001D           _m_play::
+ 001D                   .blkb 2
+                        .area idata
+ 001D 0414              .byte 4,20
+                        .area data(ram, con, rel)
+ 001F                   .dbfile C:\example\Sound\pongdang.c
+ 001F                   .blkb 2
+                        .area idata
+ 001F 2424              .byte 36,36
+                        .area data(ram, con, rel)
+ 0021                   .dbfile C:\example\Sound\pongdang.c
+ 0021                   .blkb 2
+                        .area idata
+ 0021 0424              .byte 4,36
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\example\Sound\pongdang.c
+ 0023                   .blkb 2
+                        .area idata
+ 0023 4252              .byte 'B,'R
+                        .area data(ram, con, rel)
+ 0025                   .dbfile C:\example\Sound\pongdang.c
+ 0025                   .blkb 2
+                        .area idata
+ 0025 4404              .byte 'D,4
+                        .area data(ram, con, rel)
+ 0027                   .dbfile C:\example\Sound\pongdang.c
+ 0027                   .blkb 2
+                        .area idata
+ 0027 1424              .byte 20,36
+                        .area data(ram, con, rel)
+ 0029                   .dbfile C:\example\Sound\pongdang.c
+ 0029                   .blkb 2
+                        .area idata
+ 0029 2404              .byte 36,4
+                        .area data(ram, con, rel)
+ 002B                   .dbfile C:\example\Sound\pongdang.c
+ 002B                   .blkb 2
+                        .area idata
+ 002B 2442              .byte 36,'B
+                        .area data(ram, con, rel)
+ 002D                   .dbfile C:\example\Sound\pongdang.c
+ 002D                   .blkb 2
+                        .area idata
+ 002D 5244              .byte 'R,'D
+                        .area data(ram, con, rel)
+ 002F                   .dbfile C:\example\Sound\pongdang.c
+ 002F                   .blkb 2
+                        .area idata
+ 002F 5844              .byte 'X,'D
+                        .area data(ram, con, rel)
+ 0031                   .dbfile C:\example\Sound\pongdang.c
+ 0031                   .blkb 2
+                        .area idata
+ 0031 2458              .byte 36,'X
+                        .area data(ram, con, rel)
+ 0033                   .dbfile C:\example\Sound\pongdang.c
+ 0033                   .blkb 2
+                        .area idata
+ 0033 4424              .byte 'D,36
+                        .area data(ram, con, rel)
+ 0035                   .dbfile C:\example\Sound\pongdang.c
+ 0035                   .blkb 2
+                        .area idata
+ 0035 1414              .byte 20,20
+                        .area data(ram, con, rel)
+ 0037                   .dbfile C:\example\Sound\pongdang.c
+ 0037                   .blkb 2
+                        .area idata
+ 0037 0414              .byte 4,20
+                        .area data(ram, con, rel)
+ 0039                   .dbfile C:\example\Sound\pongdang.c
+ 0039                   .blkb 2
+                        .area idata
+ 0039 2444              .byte 36,'D
+                        .area data(ram, con, rel)
+ 003B                   .dbfile C:\example\Sound\pongdang.c
+ 003B                   .blkb 2
+                        .area idata
+ 003B 4854              .byte 'H,'T
+                        .area data(ram, con, rel)
+ 003D                   .dbfile C:\example\Sound\pongdang.c
+ 003D                   .blkb 2
+                        .area idata
+ 003D 5444              .byte 'T,'D
+                        .area data(ram, con, rel)
+ 003F                   .dbfile C:\example\Sound\pongdang.c
+ 003F                   .blkb 2
+                        .area idata
+ 003F 5474              .byte 'T,'t
+                        .area data(ram, con, rel)
+ 0041                   .dbfile C:\example\Sound\pongdang.c
+ 0041                   .blkb 2
+                        .area idata
+ 0041 7474              .byte 't,'t
+                        .area data(ram, con, rel)
+ 0043                   .dbfile C:\example\Sound\pongdang.c
+ 0043                   .blkb 2
+                        .area idata
+ 0043 4444              .byte 'D,'D
+                        .area data(ram, con, rel)
+ 0045                   .dbfile C:\example\Sound\pongdang.c
+ 0045                   .blkb 2
+                        .area idata
+ 0045 2414              .byte 36,20
+                        .area data(ram, con, rel)
+ 0047                   .dbfile C:\example\Sound\pongdang.c
+ 0047                   .blkb 2
+                        .area idata
+ 0047 0814              .byte 8,20
+                        .area data(ram, con, rel)
+ 0049                   .dbfile C:\example\Sound\pongdang.c
+ 0049                   .blkb 2
+                        .area idata
+ 0049 2204              .byte 34,4
+                        .area data(ram, con, rel)
+ 004B                   .dbfile C:\example\Sound\pongdang.c
+ 004B                   .blkb 2
+                        .area idata
+ 004B 2444              .byte 36,'D
+                        .area data(ram, con, rel)
+ 004D                   .dbfile C:\example\Sound\pongdang.c
+ 004D                   .blkb 2
+                        .area idata
+ 004D 4444              .byte 'D,'D
+                        .area data(ram, con, rel)
+ 004F                   .dbfile C:\example\Sound\pongdang.c
+ 004F                   .blkb 2
+                        .area idata
+ 004F 1422              .byte 20,34
+                        .area data(ram, con, rel)
+ 0051                   .dbfile C:\example\Sound\pongdang.c
+ 0051                   .blkb 2
+                        .area idata
+ 0051 3224              .byte 50,36
+                        .area data(ram, con, rel)
+ 0053                   .dbfile C:\example\Sound\pongdang.c
+ 0053                   .blkb 2
+                        .area idata
+ 0053 1404              .byte 20,4
+                        .area data(ram, con, rel)
+ 0055                   .dbfile C:\example\Sound\pongdang.c
+ 0055                   .dbsym e m_play _m_play A[56:56]c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\example\Sound\pongdang.c
+ 0000                   .dbfunc e port_init _port_init fV
+                        .even
+ 0000           _port_init::
+ 0000                   .dbline -1
+ 0000                   .dbline 19
+ 0000           ; //ICC-AVR application builder : 2008-12-23 ¿ÀÈÄ 8:11:13
+ 0000           ; // Target : M128
+ 0000           ; // Crystal: 16.000Mhz
+ 0000           ; 
+ 0000           ; #include <iom128v.h>
+ 0000           ; #include <macros.h>
+ 0000           ; unsigned int freq[9] = {0xc440, 0xcac4, 0xd095, 0xd33b, 0xd817, 0xdc7e, 0xe100, 0xe300, 0xe562};
+ 0000           ; volatile char cf=100;
+ 0000           ; volatile int sec=0, tick=0, m_tick=0, m_reset=0, s_tick=0;
+ 0000           ; char m_play[56] = {   0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+ 0000           ;                       0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+ 0000           ;                       0x58, 0x44, 0x24, 0x58, 0x44, 0x24, 0x14, 0x14, 0x04, 
+ 0000           ;                       0x14, 0x24, 0x44, 0x48, 0x54, 0x54, 0x44, 0x54, 0x74, 
+ 0000           ;                       0x74, 0x74, 0x44, 0x44, 0x24, 0x14, 0x08, 0x14, 0x22,
+ 0000           ;                       0x04, 0x24, 0x44, 0x44, 0x44, 0x14, 0x22, 0x32, 0x24, 
+ 0000           ;                       0x14, 0x04};
+ 0000           ;                       
+ 0000           ; void port_init(void)
+ 0000           ; {
+ 0000                   .dbline 20
+ 0000           ;  PORTA = 0x00;
+ 0000 2224              clr R2
+ 0002 2BBA              out 0x1b,R2
+ 0004                   .dbline 21
+ 0004           ;  DDRA  = 0x00;
+ 0004 2ABA              out 0x1a,R2
+ 0006                   .dbline 22
+ 0006           ;  PORTB = 0x00;
+ 0006 28BA              out 0x18,R2
+ 0008                   .dbline 23
+ 0008           ;  DDRB  = 0x00;
+ 0008 27BA              out 0x17,R2
+ 000A                   .dbline 24
+ 000A           ;  PORTC = 0x00; //m103 output only
+ 000A 25BA              out 0x15,R2
+ 000C                   .dbline 25
+ 000C           ;  DDRC  = 0x00;
+ 000C 24BA              out 0x14,R2
+ 000E                   .dbline 26
+ 000E           ;  PORTD = 0x00;
+ 000E 22BA              out 0x12,R2
+ 0010                   .dbline 27
+ 0010           ;  DDRD  = 0x00;
+ 0010 21BA              out 0x11,R2
+ 0012                   .dbline 28
+ 0012           ;  PORTE = 0x00;
+ 0012 23B8              out 0x3,R2
+ 0014                   .dbline 29
+ 0014           ;  DDRE  = 0x00;
+ 0014 22B8              out 0x2,R2
+ 0016                   .dbline 30
+ 0016           ;  PORTF = 0x00;
+ 0016 20926200          sts 98,R2
+ 001A                   .dbline 31
+ 001A           ;  DDRF  = 0x00;
+ 001A 20926100          sts 97,R2
+ 001E                   .dbline 32
+ 001E           ;  PORTG = 0x00;
+ 001E 20926500          sts 101,R2
+ 0022                   .dbline 33
+ 0022           ;  DDRG  = 0x00;
+ 0022 20926400          sts 100,R2
+ 0026                   .dbline -2
+ 0026           L1:
+ 0026                   .dbline 0 ; func end
+ 0026 0895              ret
+ 0028                   .dbend
+ 0028                   .dbfunc e timer0_init _timer0_init fV
+                        .even
+ 0028           _timer0_init::
+ 0028                   .dbline -1
+ 0028                   .dbline 36
+ 0028           ; }
+ 0028           ; void timer0_init(void)
+ 0028           ; {
+ 0028                   .dbline 37
+ 0028           ;       TCCR0 = 0x00; //stop
+ 0028 2224              clr R2
+ 002A 23BE              out 0x33,R2
+ 002C                   .dbline 38
+ 002C           ;       ASSR  = 0x00; //set async mode
+ 002C 20BE              out 0x30,R2
+ 002E                   .dbline 39
+ 002E           ;       TCNT0 = 0xCE; //set count
+ 002E 8EEC              ldi R24,206
+ 0030 82BF              out 0x32,R24
+ 0032                   .dbline 40
+ 0032           ;       OCR0  = 0x32;
+ 0032 82E3              ldi R24,50
+ 0034 81BF              out 0x31,R24
+ 0036                   .dbline 41
+ 0036           ;       TCCR0 = 0x03; //start timer
+ 0036 83E0              ldi R24,3
+ 0038 83BF              out 0x33,R24
+ 003A                   .dbline -2
+ 003A           L2:
+ 003A                   .dbline 0 ; func end
+ 003A 0895              ret
+ 003C                   .dbend
+ 003C                   .dbfunc e timer1_init _timer1_init fV
+                        .even
+ 003C           _timer1_init::
+ 003C                   .dbline -1
+ 003C                   .dbline 44
+ 003C           ; }
+ 003C           ; void timer1_init(void)
+ 003C           ; {
+ 003C                   .dbline 45
+ 003C           ;       TCCR1B = 0x00; //stop
+ 003C 2224              clr R2
+ 003E 2EBC              out 0x2e,R2
+ 0040                   .dbline 46
+ 0040           ;       TCNT1H = 0xC4; //setup
+ 0040 84EC              ldi R24,196
+ 0042 8DBD              out 0x2d,R24
+ 0044                   .dbline 47
+ 0044           ;       TCNT1L = 0x40;
+ 0044 80E4              ldi R24,64
+ 0046 8CBD              out 0x2c,R24
+ 0048                   .dbline 48
+ 0048           ;       OCR1AH = 0x3B;
+ 0048 8BE3              ldi R24,59
+ 004A 8BBD              out 0x2b,R24
+ 004C                   .dbline 49
+ 004C           ;       OCR1AL = 0xC0;
+ 004C 80EC              ldi R24,192
+ 004E 8ABD              out 0x2a,R24
+ 0050                   .dbline 50
+ 0050           ;       OCR1BH = 0x3B;
+ 0050 8BE3              ldi R24,59
+ 0052 89BD              out 0x29,R24
+ 0054                   .dbline 51
+ 0054           ;       OCR1BL = 0xC0;
+ 0054 80EC              ldi R24,192
+ 0056 88BD              out 0x28,R24
+ 0058                   .dbline 52
+ 0058           ;       OCR1CH = 0x3B;
+ 0058 8BE3              ldi R24,59
+ 005A 80937900          sts 121,R24
+ 005E                   .dbline 53
+ 005E           ;       OCR1CL = 0xC0;
+ 005E 80EC              ldi R24,192
+ 0060 80937800          sts 120,R24
+ 0064                   .dbline 54
+ 0064           ;       ICR1H  = 0x3B;
+ 0064 8BE3              ldi R24,59
+ 0066 87BD              out 0x27,R24
+ 0068                   .dbline 55
+ 0068           ;       ICR1L  = 0xC0;
+ 0068 80EC              ldi R24,192
+ 006A 86BD              out 0x26,R24
+ 006C                   .dbline 56
+ 006C           ;       TCCR1A = 0x00;
+ 006C 2FBC              out 0x2f,R2
+ 006E                   .dbline 57
+ 006E           ;       TCCR1B = 0x01; //start Timer
+ 006E 81E0              ldi R24,1
+ 0070 8EBD              out 0x2e,R24
+ 0072                   .dbline -2
+ 0072           L3:
+ 0072                   .dbline 0 ; func end
+ 0072 0895              ret
+ 0074                   .dbend
+                        .area vector(rom, abs)
+                        .org 64
+ 0040 0C943A00          jmp _timer0_ovf_isr
+                        .area text(rom, con, rel)
+ 0074                   .dbfile C:\example\Sound\pongdang.c
+ 0074                   .dbfunc e timer0_ovf_isr _timer0_ovf_isr fV
+                        .even
+ 0074           _timer0_ovf_isr::
+ 0074 2A92              st -y,R2
+ 0076 3A92              st -y,R3
+ 0078 8A93              st -y,R24
+ 007A 9A93              st -y,R25
+ 007C AA93              st -y,R26
+ 007E EA93              st -y,R30
+ 0080 2FB6              in R2,0x3f
+ 0082 2A92              st -y,R2
+ 0084                   .dbline -1
+ 0084                   .dbline 61
+ 0084           ; }
+ 0084           ; #pragma interrupt_handler timer0_ovf_isr:17
+ 0084           ; void timer0_ovf_isr(void)
+ 0084           ; {
+ 0084                   .dbline 62
+ 0084           ;       TCNT0 = 0xCE; 
+ 0084 8EEC              ldi R24,206
+ 0086 82BF              out 0x32,R24
+ 0088                   .dbline 63
+ 0088           ;       tick++;
+ 0088 80911500          lds R24,_tick
+ 008C 90911600          lds R25,_tick+1
+ 0090 0196              adiw R24,1
+ 0092 90931600          sts _tick+1,R25
+ 0096 80931500          sts _tick,R24
+ 009A                   .dbline 64
+ 009A           ;       if(tick>10000){
+ 009A 80E1              ldi R24,10000
+ 009C 97E2              ldi R25,39
+ 009E 20901500          lds R2,_tick
+ 00A2 30901600          lds R3,_tick+1
+ 00A6 8215              cp R24,R2
+ 00A8 9305              cpc R25,R3
+ 00AA 34F4              brge L5
+ 00AC           X0:
+ 00AC                   .dbline 64
+ 00AC                   .dbline 65
+ 00AC           ;               tick = 0;
+ 00AC 2224              clr R2
+ 00AE 3324              clr R3
+ 00B0 30921600          sts _tick+1,R3
+ 00B4 20921500          sts _tick,R2
+ 00B8                   .dbline 66
+ 00B8           ;               }
+ 00B8           L5:
+ 00B8                   .dbline 68
+ 00B8           ;       
+ 00B8           ;       m_tick ++; 
+ 00B8 80911700          lds R24,_m_tick
+ 00BC 90911800          lds R25,_m_tick+1
+ 00C0 0196              adiw R24,1
+ 00C2 90931800          sts _m_tick+1,R25
+ 00C6 80931700          sts _m_tick,R24
+ 00CA                   .dbline 69
+ 00CA           ;       if(m_reset == 1){
+ 00CA 80911900          lds R24,_m_reset
+ 00CE 90911A00          lds R25,_m_reset+1
+ 00D2 8130              cpi R24,1
+ 00D4 E0E0              ldi R30,0
+ 00D6 9E07              cpc R25,R30
+ 00D8 51F4              brne L7
+ 00DA           X1:
+ 00DA                   .dbline 69
+ 00DA                   .dbline 70
+ 00DA           ;               m_tick = 0;
+ 00DA 2224              clr R2
+ 00DC 3324              clr R3
+ 00DE 30921800          sts _m_tick+1,R3
+ 00E2 20921700          sts _m_tick,R2
+ 00E6                   .dbline 71
+ 00E6           ;               m_reset =0;
+ 00E6 30921A00          sts _m_reset+1,R3
+ 00EA 20921900          sts _m_reset,R2
+ 00EE                   .dbline 72
+ 00EE           ;       }
+ 00EE           L7:
+ 00EE                   .dbline -2
+ 00EE           L4:
+ 00EE                   .dbline 0 ; func end
+ 00EE 2990              ld R2,y+
+ 00F0 2FBE              out 0x3f,R2
+ 00F2 E991              ld R30,y+
+ 00F4 A991              ld R26,y+
+ 00F6 9991              ld R25,y+
+ 00F8 8991              ld R24,y+
+ 00FA 3990              ld R3,y+
+ 00FC 2990              ld R2,y+
+ 00FE 1895              reti
+ 0100                   .dbend
+                        .area vector(rom, abs)
+                        .org 56
+ 0038 0C948000          jmp _timer1_ovf_isr
+                        .area text(rom, con, rel)
+ 0100                   .dbfile C:\example\Sound\pongdang.c
+ 0100                   .dbfunc e timer1_ovf_isr _timer1_ovf_isr fV
+                        .even
+ 0100           _timer1_ovf_isr::
+ 0100 1A92              st -y,R1
+ 0102 2A92              st -y,R2
+ 0104 8A93              st -y,R24
+ 0106 9A93              st -y,R25
+ 0108 EA93              st -y,R30
+ 010A FA93              st -y,R31
+ 010C 1FB6              in R1,0x3f
+ 010E 1A92              st -y,R1
+ 0110                   .dbline -1
+ 0110                   .dbline 77
+ 0110           ;       
+ 0110           ; }
+ 0110           ; #pragma interrupt_handler timer1_ovf_isr:15
+ 0110           ; void timer1_ovf_isr(void)
+ 0110           ; {
+ 0110                   .dbline 79
+ 0110           ;       //TIMER1 has overflowed
+ 0110           ;       TCNT1H = (freq[cf]>>8) & 0xff; //reload counter high value
+ 0110 80E0              ldi R24,<_freq
+ 0112 90E0              ldi R25,>_freq
+ 0114 E0911200          lds R30,_cf
+ 0118 FF27              clr R31
+ 011A EE0F              lsl R30
+ 011C FF1F              rol R31
+ 011E E80F              add R30,R24
+ 0120 F91F              adc R31,R25
+ 0122 8081              ldd R24,z+0
+ 0124 9181              ldd R25,z+1
+ 0126 892F              mov R24,R25
+ 0128 9927              clr R25
+ 012A 9070              andi R25,0
+ 012C 8DBD              out 0x2d,R24
+ 012E                   .dbline 80
+ 012E           ;       TCNT1L = (freq[cf]) & 0xff; //reload counter low value
+ 012E 80E0              ldi R24,<_freq
+ 0130 90E0              ldi R25,>_freq
+ 0132 E0911200          lds R30,_cf
+ 0136 FF27              clr R31
+ 0138 EE0F              lsl R30
+ 013A FF1F              rol R31
+ 013C E80F              add R30,R24
+ 013E F91F              adc R31,R25
+ 0140 8081              ldd R24,z+0
+ 0142 9181              ldd R25,z+1
+ 0144 9070              andi R25,0
+ 0146 8CBD              out 0x2c,R24
+ 0148                   .dbline 81
+ 0148           ;       if(cf < 9){
+ 0148 80911200          lds R24,_cf
+ 014C 8930              cpi R24,9
+ 014E 38F4              brsh L10
+ 0150           X2:
+ 0150                   .dbline 81
+ 0150                   .dbline 82
+ 0150           ;               PORTG = PORTG ^ 0x10;
+ 0150 80E1              ldi R24,16
+ 0152 20906500          lds R2,101
+ 0156 2826              eor R2,R24
+ 0158 20926500          sts 101,R2
+ 015C                   .dbline 83
+ 015C           ;       }else{
+ 015C 05C0              xjmp L11
+ 015E           L10:
+ 015E                   .dbline 83
+ 015E                   .dbline 84
+ 015E           ;               PORTG = PORTG & 0xef;
+ 015E 80916500          lds R24,101
+ 0162 8F7E              andi R24,239
+ 0164 80936500          sts 101,R24
+ 0168                   .dbline 85
+ 0168           ;       }
+ 0168           L11:
+ 0168                   .dbline -2
+ 0168           L9:
+ 0168                   .dbline 0 ; func end
+ 0168 1990              ld R1,y+
+ 016A 1FBE              out 0x3f,R1
+ 016C F991              ld R31,y+
+ 016E E991              ld R30,y+
+ 0170 9991              ld R25,y+
+ 0172 8991              ld R24,y+
+ 0174 2990              ld R2,y+
+ 0176 1990              ld R1,y+
+ 0178 1895              reti
+ 017A                   .dbend
+ 017A                   .dbfunc e init_devices _init_devices fV
+                        .even
+ 017A           _init_devices::
+ 017A                   .dbline -1
+ 017A                   .dbline 90
+ 017A           ; }
+ 017A           ; 
+ 017A           ; //call this routine to initialize all peripherals
+ 017A           ; void init_devices(void)
+ 017A           ; {
+ 017A                   .dbline 92
+ 017A           ;  //stop errant interrupts until set up
+ 017A           ;  CLI(); //disable all interrupts
+ 017A F894              cli
+ 017C                   .dbline 93
+ 017C           ;  XDIV  = 0x00; //xtal divider
+ 017C 2224              clr R2
+ 017E 2CBE              out 0x3c,R2
+ 0180                   .dbline 94
+ 0180           ;  XMCRA = 0x00; //external memory
+ 0180 20926D00          sts 109,R2
+ 0184                   .dbline 95
+ 0184           ;  port_init();
+ 0184 3DDF              xcall _port_init
+ 0186                   .dbline 96
+ 0186           ;  timer1_init();
+ 0186 5ADF              xcall _timer1_init
+ 0188                   .dbline 97
+ 0188           ;  timer0_init();
+ 0188 4FDF              xcall _timer0_init
+ 018A                   .dbline 99
+ 018A           ;  
+ 018A           ;  MCUCR = 0x00;
+ 018A 2224              clr R2
+ 018C 25BE              out 0x35,R2
+ 018E                   .dbline 100
+ 018E           ;  EICRA = 0x00; //extended ext ints
+ 018E 20926A00          sts 106,R2
+ 0192                   .dbline 101
+ 0192           ;  EICRB = 0x00; //extended ext ints
+ 0192 2ABE              out 0x3a,R2
+ 0194                   .dbline 102
+ 0194           ;  EIMSK = 0x00;
+ 0194 29BE              out 0x39,R2
+ 0196                   .dbline 103
+ 0196           ;  TIMSK = 0x45; //timer interrupt sources
+ 0196 85E4              ldi R24,69
+ 0198 87BF              out 0x37,R24
+ 019A                   .dbline 104
+ 019A           ;  ETIMSK = 0x00; //extended timer interrupt sources
+ 019A 20927D00          sts 125,R2
+ 019E                   .dbline 105
+ 019E           ;  SEI(); //re-enable interrupts
+ 019E 7894              sei
+ 01A0                   .dbline -2
+ 01A0           L12:
+ 01A0                   .dbline 0 ; func end
+ 01A0 0895              ret
+ 01A2                   .dbend
+ 01A2                   .dbfunc e playPongdangsong _playPongdangsong fV
+ 01A2           ;              i -> R20
+ 01A2           ;         period -> R10,R11
+                        .even
+ 01A2           _playPongdangsong::
+ 01A2 0E940000          xcall push_xgset300C
+ 01A6                   .dbline -1
+ 01A6                   .dbline 109
+ 01A6           ;  //all peripherals are now initialized
+ 01A6           ; }
+ 01A6           ; void playPongdangsong(void)
+ 01A6           ; {
+ 01A6                   .dbline 113
+ 01A6           ;       char i;
+ 01A6           ;       int period;
+ 01A6           ;       
+ 01A6           ;       for(i=0; i<56; i++){
+ 01A6 4427              clr R20
+ 01A8 37C0              xjmp L17
+ 01AA           L14:
+ 01AA                   .dbline 113
+ 01AA                   .dbline 114
+ 01AA           ;               cf = (m_play[i]>>4) & 0x0f;
+ 01AA 80E0              ldi R24,<_m_play
+ 01AC 90E0              ldi R25,>_m_play
+ 01AE E42F              mov R30,R20
+ 01B0 FF27              clr R31
+ 01B2 E80F              add R30,R24
+ 01B4 F91F              adc R31,R25
+ 01B6 8081              ldd R24,z+0
+ 01B8 8295              swap R24
+ 01BA 8F70              andi R24,#0x0F
+ 01BC 8F70              andi R24,15
+ 01BE 80931200          sts _cf,R24
+ 01C2                   .dbline 115
+ 01C2           ;               period = (m_play[i] & 0x0f) * 1000;
+ 01C2 80E0              ldi R24,<_m_play
+ 01C4 90E0              ldi R25,>_m_play
+ 01C6 E42F              mov R30,R20
+ 01C8 FF27              clr R31
+ 01CA E80F              add R30,R24
+ 01CC F91F              adc R31,R25
+ 01CE 2081              ldd R18,z+0
+ 01D0 3327              clr R19
+ 01D2 2F70              andi R18,15
+ 01D4 3070              andi R19,0
+ 01D6 08EE              ldi R16,1000
+ 01D8 13E0              ldi R17,3
+ 01DA 0E940000          xcall empy16s
+ 01DE 5801              movw R10,R16
+ 01E0                   .dbline 116
+ 01E0           ;               m_reset = 1;
+ 01E0 81E0              ldi R24,1
+ 01E2 90E0              ldi R25,0
+ 01E4 90931A00          sts _m_reset+1,R25
+ 01E8 80931900          sts _m_reset,R24
+ 01EC           L18:
+ 01EC                   .dbline 117
+ 01EC           ;               while(m_reset == 1);
+ 01EC           L19:
+ 01EC                   .dbline 117
+ 01EC 80911900          lds R24,_m_reset
+ 01F0 90911A00          lds R25,_m_reset+1
+ 01F4 8130              cpi R24,1
+ 01F6 E0E0              ldi R30,0
+ 01F8 9E07              cpc R25,R30
+ 01FA C1F3              breq L18
+ 01FC           X3:
+ 01FC           L21:
+ 01FC                   .dbline 118
+ 01FC           ;               while(m_tick < period);
+ 01FC           L22:
+ 01FC                   .dbline 118
+ 01FC 20901700          lds R2,_m_tick
+ 0200 30901800          lds R3,_m_tick+1
+ 0204 2A14              cp R2,R10
+ 0206 3B04              cpc R3,R11
+ 0208 CCF3              brlt L21
+ 020A           X4:
+ 020A                   .dbline 120
+ 020A           ;               //delay(1400);
+ 020A           ;               if(PINB & 0x40){
+ 020A B69B              sbis 0x16,6
+ 020C 04C0              rjmp L24
+ 020E           X5:
+ 020E                   .dbline 120
+ 020E                   .dbline 121
+ 020E           ;                       cf = 100;
+ 020E 84E6              ldi R24,100
+ 0210 80931200          sts _cf,R24
+ 0214                   .dbline 122
+ 0214           ;                       break;
+ 0214 04C0              xjmp L16
+ 0216           L24:
+ 0216                   .dbline 124
+ 0216           ;               }
+ 0216           ;       }
+ 0216           L15:
+ 0216                   .dbline 113
+ 0216 4395              inc R20
+ 0218           L17:
+ 0218                   .dbline 113
+ 0218 4833              cpi R20,56
+ 021A 08F4              brsh X7
+ 021C C6CF              xjmp L14
+ 021E           X7:
+ 021E           X6:
+ 021E           L16:
+ 021E                   .dbline 125
+ 021E           ;       cf = 100;
+ 021E 84E6              ldi R24,100
+ 0220 80931200          sts _cf,R24
+ 0224                   .dbline -2
+ 0224           L13:
+ 0224                   .dbline 0 ; func end
+ 0224 0C940000          xjmp pop_xgset300C
+ 0228                   .dbsym r i 20 c
+ 0228                   .dbsym r period 10 I
+ 0228                   .dbend
+ 0228                   .dbfunc e playMusic _playMusic fV
+                        .even
+ 0228           _playMusic::
+ 0228                   .dbline -1
+ 0228                   .dbline 128
+ 0228           ; }
+ 0228           ; void playMusic(void)
+ 0228           ; {
+ 0228 33C0              xjmp L28
+ 022A           L27:
+ 022A                   .dbline 129
+ 022A           ; while(1){
+ 022A                   .dbline 130
+ 022A           ;               if(PINB & 0x80){
+ 022A B79B              sbis 0x16,7
+ 022C 04C0              rjmp L30
+ 022E           X8:
+ 022E                   .dbline 130
+ 022E                   .dbline 131
+ 022E           ;                       cf = 0;
+ 022E 2224              clr R2
+ 0230 20921200          sts _cf,R2
+ 0234                   .dbline 133
+ 0234           ;                       
+ 0234           ;               }else if(PINB & 0x40){
+ 0234 2DC0              xjmp L31
+ 0236           L30:
+ 0236                   .dbline 133
+ 0236 B69B              sbis 0x16,6
+ 0238 04C0              rjmp L32
+ 023A           X9:
+ 023A                   .dbline 133
+ 023A                   .dbline 134
+ 023A           ;                       cf = 1;
+ 023A 81E0              ldi R24,1
+ 023C 80931200          sts _cf,R24
+ 0240                   .dbline 136
+ 0240           ;                       
+ 0240           ;               }else if(PINB & 0x20){
+ 0240 27C0              xjmp L33
+ 0242           L32:
+ 0242                   .dbline 136
+ 0242 B59B              sbis 0x16,5
+ 0244 04C0              rjmp L34
+ 0246           X10:
+ 0246                   .dbline 136
+ 0246                   .dbline 137
+ 0246           ;                       cf = 2;
+ 0246 82E0              ldi R24,2
+ 0248 80931200          sts _cf,R24
+ 024C                   .dbline 139
+ 024C           ;                       
+ 024C           ;               }else if(PINB & 0x10){
+ 024C 21C0              xjmp L35
+ 024E           L34:
+ 024E                   .dbline 139
+ 024E B49B              sbis 0x16,4
+ 0250 04C0              rjmp L36
+ 0252           X11:
+ 0252                   .dbline 139
+ 0252                   .dbline 140
+ 0252           ;                       cf = 3;
+ 0252 83E0              ldi R24,3
+ 0254 80931200          sts _cf,R24
+ 0258                   .dbline 142
+ 0258           ;                       
+ 0258           ;               }else if(PINB & 0x08){
+ 0258 1BC0              xjmp L37
+ 025A           L36:
+ 025A                   .dbline 142
+ 025A B39B              sbis 0x16,3
+ 025C 04C0              rjmp L38
+ 025E           X12:
+ 025E                   .dbline 142
+ 025E                   .dbline 143
+ 025E           ;                       cf = 4;
+ 025E 84E0              ldi R24,4
+ 0260 80931200          sts _cf,R24
+ 0264                   .dbline 145
+ 0264           ;                       
+ 0264           ;               }else if(PINB & 0x04){
+ 0264 15C0              xjmp L39
+ 0266           L38:
+ 0266                   .dbline 145
+ 0266 B29B              sbis 0x16,2
+ 0268 04C0              rjmp L40
+ 026A           X13:
+ 026A                   .dbline 145
+ 026A                   .dbline 146
+ 026A           ;                       cf = 5;
+ 026A 85E0              ldi R24,5
+ 026C 80931200          sts _cf,R24
+ 0270                   .dbline 148
+ 0270           ;                       
+ 0270           ;               }else if(PINB & 0x02){
+ 0270 0FC0              xjmp L41
+ 0272           L40:
+ 0272                   .dbline 148
+ 0272 B19B              sbis 0x16,1
+ 0274 04C0              rjmp L42
+ 0276           X14:
+ 0276                   .dbline 148
+ 0276                   .dbline 149
+ 0276           ;                       cf = 6;
+ 0276 86E0              ldi R24,6
+ 0278 80931200          sts _cf,R24
+ 027C                   .dbline 151
+ 027C           ;                       
+ 027C           ;               }else if(PINB & 0x01){
+ 027C 09C0              xjmp L43
+ 027E           L42:
+ 027E                   .dbline 151
+ 027E B09B              sbis 0x16,0
+ 0280 04C0              rjmp L44
+ 0282           X15:
+ 0282                   .dbline 151
+ 0282                   .dbline 152
+ 0282           ;                       cf = 7;
+ 0282 87E0              ldi R24,7
+ 0284 80931200          sts _cf,R24
+ 0288                   .dbline 154
+ 0288           ;                       
+ 0288           ;               }else{
+ 0288 03C0              xjmp L45
+ 028A           L44:
+ 028A                   .dbline 154
+ 028A                   .dbline 155
+ 028A           ;                       cf = 100;
+ 028A 84E6              ldi R24,100
+ 028C 80931200          sts _cf,R24
+ 0290                   .dbline 157
+ 0290           ;                       
+ 0290           ;               }
+ 0290           L45:
+ 0290           L43:
+ 0290           L41:
+ 0290           L39:
+ 0290           L37:
+ 0290           L35:
+ 0290           L33:
+ 0290           L31:
+ 0290                   .dbline 158
+ 0290           ;       }
+ 0290           L28:
+ 0290                   .dbline 129
+ 0290 CCCF              xjmp L27
+ 0292           X16:
+ 0292                   .dbline -2
+ 0292           L26:
+ 0292                   .dbline 0 ; func end
+ 0292 0895              ret
+ 0294                   .dbend
+ 0294                   .dbfunc e delay _delay fV
+ 0294           ;              i -> R20,R21
+ 0294           ;              j -> R22,R23
+ 0294           ;            cnt -> R16,R17
+                        .even
+ 0294           _delay::
+ 0294 0E940000          xcall push_xgsetF000
+ 0298                   .dbline -1
+ 0298                   .dbline 160
+ 0298           ; }
+ 0298           ; void delay(int cnt){
+ 0298                   .dbline 162
+ 0298           ; int i, j;
+ 0298           ; for(i=0; i<cnt; i++){
+ 0298 4427              clr R20
+ 029A 5527              clr R21
+ 029C 0AC0              xjmp L50
+ 029E           L47:
+ 029E                   .dbline 162
+ 029E                   .dbline 163
+ 029E           ; for(j=0; j<600; j++) ;
+ 029E 6627              clr R22
+ 02A0 7727              clr R23
+ 02A2           L51:
+ 02A2                   .dbline 163
+ 02A2           L52:
+ 02A2                   .dbline 163
+ 02A2 6F5F              subi R22,255  ; offset = 1
+ 02A4 7F4F              sbci R23,255
+ 02A6                   .dbline 163
+ 02A6 6835              cpi R22,88
+ 02A8 E2E0              ldi R30,2
+ 02AA 7E07              cpc R23,R30
+ 02AC D4F3              brlt L51
+ 02AE           X17:
+ 02AE                   .dbline 164
+ 02AE           ; }
+ 02AE           L48:
+ 02AE                   .dbline 162
+ 02AE 4F5F              subi R20,255  ; offset = 1
+ 02B0 5F4F              sbci R21,255
+ 02B2           L50:
+ 02B2                   .dbline 162
+ 02B2 4017              cp R20,R16
+ 02B4 5107              cpc R21,R17
+ 02B6 9CF3              brlt L47
+ 02B8           X18:
+ 02B8                   .dbline -2
+ 02B8           L46:
+ 02B8                   .dbline 0 ; func end
+ 02B8 0C940000          xjmp pop_xgsetF000
+ 02BC                   .dbsym r i 20 I
+ 02BC                   .dbsym r j 22 I
+ 02BC                   .dbsym r cnt 16 I
+ 02BC                   .dbend
+ 02BC                   .dbfunc e main _main fV
+                        .even
+ 02BC           _main::
+ 02BC                   .dbline -1
+ 02BC                   .dbline 168
+ 02BC           ; }
+ 02BC           ; //
+ 02BC           ; void main(void)
+ 02BC           ; {
+ 02BC                   .dbline 169
+ 02BC           ;  init_devices();
+ 02BC 5EDF              xcall _init_devices
+ 02BE 01C0              xjmp L57
+ 02C0           L56:
+ 02C0                   .dbline 171
+ 02C0           ;  //insert your functional code here...
+ 02C0           ;  while(1) playPongdangsong();// playMusic();
+ 02C0 70DF              xcall _playPongdangsong
+ 02C2           L57:
+ 02C2                   .dbline 171
+ 02C2 FECF              xjmp L56
+ 02C4           X19:
+ 02C4                   .dbline -2
+ 02C4           L55:
+ 02C4                   .dbline 0 ; func end
+ 02C4 0895              ret
+ 02C6                   .dbend
+ 02C6           ; }
+ 02C6           ; 

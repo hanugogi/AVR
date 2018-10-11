@@ -1,0 +1,564 @@
+__text_start:
+__start:
+      71 EFCF      LDI	R28,0xFF
+      72 E1D0      LDI	R29,0x10
+      73 BFCD      OUT	0x3D,R28
+      74 BFDE      OUT	0x3E,R29
+      75 51CE      SUBI	R28,0x1E
+      76 40D0      SBCI	R29,0
+      77 EA0A      LDI	R16,0xAA
+      78 8308      STD	Y+0,R16
+      79 2400      CLR	R0
+      7A E5E5      LDI	R30,0x55
+      7B E0F1      LDI	R31,1
+      7C E011      LDI	R17,1
+      7D 35E5      CPI	R30,0x55
+      7E 07F1      CPC	R31,R17
+      7F F011      BEQ	0x0082
+      80 9201      ST	R0,Z+
+      81 CFFB      RJMP	0x007D
+      82 8300      STD	Z+0,R16
+      83 E8EC      LDI	R30,0x8C
+      84 E0F0      LDI	R31,0
+      85 E0A0      LDI	R26,0
+      86 E0B1      LDI	R27,1
+      87 E010      LDI	R17,0
+      88 E000      LDI	R16,0
+      89 BF0B      OUT	0x3B,R16
+      8A 3EE1      CPI	R30,0xE1
+      8B 07F1      CPC	R31,R17
+      8C F021      BEQ	0x0091
+      8D 95C8      LPM
+      8E 9631      ADIW	R30,1
+      8F 920D      ST	R0,X+
+      90 CFF9      RJMP	0x008A
+      91 940E 01F2 CALL	_main
+_exit:
+      93 CFFF      RJMP	_exit
+FILE: C:\example\Sound\pongdang.c
+(0001) //ICC-AVR application builder : 2008-12-23 ¿ÀÈÄ 8:11:13
+(0002) // Target : M128
+(0003) // Crystal: 16.000Mhz
+(0004) 
+(0005) #include <iom128v.h>
+(0006) #include <macros.h>
+(0007) unsigned int freq[9] = {0xc440, 0xcac4, 0xd095, 0xd33b, 0xd817, 0xdc7e, 0xe100, 0xe300, 0xe562};
+(0008) volatile char cf=100;
+(0009) volatile int sec=0, tick=0, m_tick=0, m_reset=0, s_tick=0;
+(0010) char m_play[56] = {	0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+(0011) 			0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+(0012) 			0x58, 0x44, 0x24, 0x58, 0x44, 0x24, 0x14, 0x14, 0x04, 
+(0013) 			0x14, 0x24, 0x44, 0x48, 0x54, 0x54, 0x44, 0x54, 0x74, 
+(0014) 			0x74, 0x74, 0x44, 0x44, 0x24, 0x14, 0x08, 0x14, 0x22,
+(0015) 			0x04, 0x24, 0x44, 0x44, 0x44, 0x14, 0x22, 0x32, 0x24, 
+(0016) 			0x14, 0x04};
+(0017) 			
+(0018) void port_init(void)
+(0019) {
+(0020)  PORTA = 0x00;
+_port_init:
+      94 2422      CLR	R2
+      95 BA2B      OUT	0x1B,R2
+(0021)  DDRA  = 0x00;
+      96 BA2A      OUT	0x1A,R2
+(0022)  PORTB = 0x00;
+      97 BA28      OUT	0x18,R2
+(0023)  DDRB  = 0x00;
+      98 BA27      OUT	0x17,R2
+(0024)  PORTC = 0x00; //m103 output only
+      99 BA25      OUT	0x15,R2
+(0025)  DDRC  = 0x00;
+      9A BA24      OUT	0x14,R2
+(0026)  PORTD = 0x00;
+      9B BA22      OUT	0x12,R2
+(0027)  DDRD  = 0x00;
+      9C BA21      OUT	0x11,R2
+(0028)  PORTE = 0x00;
+      9D B823      OUT	0x03,R2
+(0029)  DDRE  = 0x00;
+      9E B822      OUT	0x02,R2
+(0030)  PORTF = 0x00;
+      9F 9220 0062 STS	0x0062,R2
+(0031)  DDRF  = 0x00;
+      A1 9220 0061 STS	0x0061,R2
+(0032)  PORTG = 0x00;
+      A3 9220 0065 STS	0x0065,R2
+(0033)  DDRG  = 0x00;
+      A5 9220 0064 STS	0x0064,R2
+      A7 9508      RET
+(0034) }
+(0035) void timer0_init(void)
+(0036) {
+(0037) 	TCCR0 = 0x00; //stop
+_timer0_init:
+      A8 2422      CLR	R2
+      A9 BE23      OUT	0x33,R2
+(0038) 	ASSR  = 0x00; //set async mode
+      AA BE20      OUT	0x30,R2
+(0039) 	TCNT0 = 0xCE; //set count
+      AB EC8E      LDI	R24,0xCE
+      AC BF82      OUT	0x32,R24
+(0040) 	OCR0  = 0x32;
+      AD E382      LDI	R24,0x32
+      AE BF81      OUT	0x31,R24
+(0041) 	TCCR0 = 0x03; //start timer
+      AF E083      LDI	R24,3
+      B0 BF83      OUT	0x33,R24
+      B1 9508      RET
+(0042) }
+(0043) void timer1_init(void)
+(0044) {
+(0045) 	TCCR1B = 0x00; //stop
+_timer1_init:
+      B2 2422      CLR	R2
+      B3 BC2E      OUT	0x2E,R2
+(0046) 	TCNT1H = 0xC4; //setup
+      B4 EC84      LDI	R24,0xC4
+      B5 BD8D      OUT	0x2D,R24
+(0047) 	TCNT1L = 0x40;
+      B6 E480      LDI	R24,0x40
+      B7 BD8C      OUT	0x2C,R24
+(0048) 	OCR1AH = 0x3B;
+      B8 E38B      LDI	R24,0x3B
+      B9 BD8B      OUT	0x2B,R24
+(0049) 	OCR1AL = 0xC0;
+      BA EC80      LDI	R24,0xC0
+      BB BD8A      OUT	0x2A,R24
+(0050) 	OCR1BH = 0x3B;
+      BC E38B      LDI	R24,0x3B
+      BD BD89      OUT	0x29,R24
+(0051) 	OCR1BL = 0xC0;
+      BE EC80      LDI	R24,0xC0
+      BF BD88      OUT	0x28,R24
+(0052) 	OCR1CH = 0x3B;
+      C0 E38B      LDI	R24,0x3B
+      C1 9380 0079 STS	0x0079,R24
+(0053) 	OCR1CL = 0xC0;
+      C3 EC80      LDI	R24,0xC0
+      C4 9380 0078 STS	0x0078,R24
+(0054) 	ICR1H  = 0x3B;
+      C6 E38B      LDI	R24,0x3B
+      C7 BD87      OUT	0x27,R24
+(0055) 	ICR1L  = 0xC0;
+      C8 EC80      LDI	R24,0xC0
+      C9 BD86      OUT	0x26,R24
+(0056) 	TCCR1A = 0x00;
+      CA BC2F      OUT	0x2F,R2
+(0057) 	TCCR1B = 0x01; //start Timer
+      CB E081      LDI	R24,1
+      CC BD8E      OUT	0x2E,R24
+      CD 9508      RET
+_timer0_ovf_isr:
+      CE 922A      ST	R2,-Y
+      CF 923A      ST	R3,-Y
+      D0 938A      ST	R24,-Y
+      D1 939A      ST	R25,-Y
+      D2 93AA      ST	R26,-Y
+      D3 93EA      ST	R30,-Y
+      D4 B62F      IN	R2,0x3F
+      D5 922A      ST	R2,-Y
+(0058) }
+(0059) #pragma interrupt_handler timer0_ovf_isr:17
+(0060) void timer0_ovf_isr(void)
+(0061) {
+(0062) 	TCNT0 = 0xCE; 
+      D6 EC8E      LDI	R24,0xCE
+      D7 BF82      OUT	0x32,R24
+(0063) 	tick++;
+      D8 9180 0115 LDS	R24,tick
+      DA 9190 0116 LDS	R25,tick+1
+      DC 9601      ADIW	R24,1
+      DD 9390 0116 STS	tick+1,R25
+      DF 9380 0115 STS	tick,R24
+(0064) 	if(tick>10000){
+      E1 E180      LDI	R24,0x10
+      E2 E297      LDI	R25,0x27
+      E3 9020 0115 LDS	R2,tick
+      E5 9030 0116 LDS	R3,tick+1
+      E7 1582      CP	R24,R2
+      E8 0593      CPC	R25,R3
+      E9 F434      BGE	0x00F0
+(0065) 		tick = 0;
+      EA 2422      CLR	R2
+      EB 2433      CLR	R3
+      EC 9230 0116 STS	tick+1,R3
+      EE 9220 0115 STS	tick,R2
+(0066) 		}
+(0067) 	
+(0068) 	m_tick ++; 
+      F0 9180 0117 LDS	R24,m_tick
+      F2 9190 0118 LDS	R25,m_tick+1
+      F4 9601      ADIW	R24,1
+      F5 9390 0118 STS	m_tick+1,R25
+      F7 9380 0117 STS	m_tick,R24
+(0069) 	if(m_reset == 1){
+      F9 9180 0119 LDS	R24,m_reset
+      FB 9190 011A LDS	R25,m_reset+1
+      FD 3081      CPI	R24,1
+      FE E0E0      LDI	R30,0
+      FF 079E      CPC	R25,R30
+     100 F451      BNE	0x010B
+(0070) 		m_tick = 0;
+     101 2422      CLR	R2
+     102 2433      CLR	R3
+     103 9230 0118 STS	m_tick+1,R3
+     105 9220 0117 STS	m_tick,R2
+(0071) 		m_reset =0;
+     107 9230 011A STS	m_reset+1,R3
+     109 9220 0119 STS	m_reset,R2
+(0072) 	}
+     10B 9029      LD	R2,Y+
+     10C BE2F      OUT	0x3F,R2
+     10D 91E9      LD	R30,Y+
+     10E 91A9      LD	R26,Y+
+     10F 9199      LD	R25,Y+
+     110 9189      LD	R24,Y+
+     111 9039      LD	R3,Y+
+     112 9029      LD	R2,Y+
+     113 9518      RETI
+_timer1_ovf_isr:
+     114 921A      ST	R1,-Y
+     115 922A      ST	R2,-Y
+     116 938A      ST	R24,-Y
+     117 939A      ST	R25,-Y
+     118 93EA      ST	R30,-Y
+     119 93FA      ST	R31,-Y
+     11A B61F      IN	R1,0x3F
+     11B 921A      ST	R1,-Y
+(0073) 	
+(0074) }
+(0075) #pragma interrupt_handler timer1_ovf_isr:15
+(0076) void timer1_ovf_isr(void)
+(0077) {
+(0078) 	//TIMER1 has overflowed
+(0079) 	TCNT1H = (freq[cf]>>8) & 0xff; //reload counter high value
+     11C E080      LDI	R24,0
+     11D E091      LDI	R25,1
+     11E 91E0 0112 LDS	R30,cf
+     120 27FF      CLR	R31
+     121 0FEE      LSL	R30
+     122 1FFF      ROL	R31
+     123 0FE8      ADD	R30,R24
+     124 1FF9      ADC	R31,R25
+     125 8180      LDD	R24,Z+0
+     126 8191      LDD	R25,Z+1
+     127 2F89      MOV	R24,R25
+     128 2799      CLR	R25
+     129 7090      ANDI	R25,0
+     12A BD8D      OUT	0x2D,R24
+(0080) 	TCNT1L = (freq[cf]) & 0xff; //reload counter low value
+     12B E080      LDI	R24,0
+     12C E091      LDI	R25,1
+     12D 91E0 0112 LDS	R30,cf
+     12F 27FF      CLR	R31
+     130 0FEE      LSL	R30
+     131 1FFF      ROL	R31
+     132 0FE8      ADD	R30,R24
+     133 1FF9      ADC	R31,R25
+     134 8180      LDD	R24,Z+0
+     135 8191      LDD	R25,Z+1
+     136 7090      ANDI	R25,0
+     137 BD8C      OUT	0x2C,R24
+(0081) 	if(cf < 9){
+     138 9180 0112 LDS	R24,cf
+     13A 3089      CPI	R24,0x9
+     13B F438      BCC	0x0143
+(0082) 		PORTG = PORTG ^ 0x10;
+     13C E180      LDI	R24,0x10
+     13D 9020 0065 LDS	R2,0x0065
+     13F 2628      EOR	R2,R24
+     140 9220 0065 STS	0x0065,R2
+(0083) 	}else{
+     142 C005      RJMP	0x0148
+(0084) 		PORTG = PORTG & 0xef;
+     143 9180 0065 LDS	R24,0x0065
+     145 7E8F      ANDI	R24,0xEF
+     146 9380 0065 STS	0x0065,R24
+(0085) 	}
+     148 9019      LD	R1,Y+
+     149 BE1F      OUT	0x3F,R1
+     14A 91F9      LD	R31,Y+
+     14B 91E9      LD	R30,Y+
+     14C 9199      LD	R25,Y+
+     14D 9189      LD	R24,Y+
+     14E 9029      LD	R2,Y+
+     14F 9019      LD	R1,Y+
+     150 9518      RETI
+(0086) }
+(0087) 
+(0088) //call this routine to initialize all peripherals
+(0089) void init_devices(void)
+(0090) {
+(0091)  //stop errant interrupts until set up
+(0092)  CLI(); //disable all interrupts
+_init_devices:
+     151 94F8      BCLR	7
+(0093)  XDIV  = 0x00; //xtal divider
+     152 2422      CLR	R2
+     153 BE2C      OUT	0x3C,R2
+(0094)  XMCRA = 0x00; //external memory
+     154 9220 006D STS	0x006D,R2
+(0095)  port_init();
+     156 DF3D      RCALL	_port_init
+(0096)  timer1_init();
+     157 DF5A      RCALL	_timer1_init
+(0097)  timer0_init();
+     158 DF4F      RCALL	_timer0_init
+(0098)  
+(0099)  MCUCR = 0x00;
+     159 2422      CLR	R2
+     15A BE25      OUT	0x35,R2
+(0100)  EICRA = 0x00; //extended ext ints
+     15B 9220 006A STS	0x006A,R2
+(0101)  EICRB = 0x00; //extended ext ints
+     15D BE2A      OUT	0x3A,R2
+(0102)  EIMSK = 0x00;
+     15E BE29      OUT	0x39,R2
+(0103)  TIMSK = 0x45; //timer interrupt sources
+     15F E485      LDI	R24,0x45
+     160 BF87      OUT	0x37,R24
+(0104)  ETIMSK = 0x00; //extended timer interrupt sources
+     161 9220 007D STS	0x007D,R2
+(0105)  SEI(); //re-enable interrupts
+     163 9478      BSET	7
+     164 9508      RET
+_playPongdangsong:
+  i                    --> R20
+  period               --> R10
+     165 940E 0207 CALL	push_xgset300C
+(0106)  //all peripherals are now initialized
+(0107) }
+(0108) void playPongdangsong(void)
+(0109) {
+(0110) 	char i;
+(0111) 	int period;
+(0112) 	
+(0113) 	for(i=0; i<56; i++){
+     167 2744      CLR	R20
+     168 C037      RJMP	0x01A0
+(0114) 		cf = (m_play[i]>>4) & 0x0f;
+     169 E18D      LDI	R24,0x1D
+     16A E091      LDI	R25,1
+     16B 2FE4      MOV	R30,R20
+     16C 27FF      CLR	R31
+     16D 0FE8      ADD	R30,R24
+     16E 1FF9      ADC	R31,R25
+     16F 8180      LDD	R24,Z+0
+     170 9582      SWAP	R24
+     171 708F      ANDI	R24,0xF
+     172 708F      ANDI	R24,0xF
+     173 9380 0112 STS	cf,R24
+(0115) 		period = (m_play[i] & 0x0f) * 1000;
+     175 E18D      LDI	R24,0x1D
+     176 E091      LDI	R25,1
+     177 2FE4      MOV	R30,R20
+     178 27FF      CLR	R31
+     179 0FE8      ADD	R30,R24
+     17A 1FF9      ADC	R31,R25
+     17B 8120      LDD	R18,Z+0
+     17C 2733      CLR	R19
+     17D 702F      ANDI	R18,0xF
+     17E 7030      ANDI	R19,0
+     17F EE08      LDI	R16,0xE8
+     180 E013      LDI	R17,3
+     181 940E 01F7 CALL	empy16s
+     183 0158      MOVW	R10,R16
+(0116) 		m_reset = 1;
+     184 E081      LDI	R24,1
+     185 E090      LDI	R25,0
+     186 9390 011A STS	m_reset+1,R25
+     188 9380 0119 STS	m_reset,R24
+(0117) 		while(m_reset == 1);
+     18A 9180 0119 LDS	R24,m_reset
+     18C 9190 011A LDS	R25,m_reset+1
+     18E 3081      CPI	R24,1
+     18F E0E0      LDI	R30,0
+     190 079E      CPC	R25,R30
+     191 F3C1      BEQ	0x018A
+(0118) 		while(m_tick < period);
+     192 9020 0117 LDS	R2,m_tick
+     194 9030 0118 LDS	R3,m_tick+1
+     196 142A      CP	R2,R10
+     197 043B      CPC	R3,R11
+     198 F3CC      BLT	0x0192
+(0119) 		//delay(1400);
+(0120) 		if(PINB & 0x40){
+     199 9BB6      SBIS	0x16,6
+     19A C004      RJMP	0x019F
+(0121) 			cf = 100;
+     19B E684      LDI	R24,0x64
+     19C 9380 0112 STS	cf,R24
+(0122) 			break;
+     19E C004      RJMP	0x01A3
+     19F 9543      INC	R20
+     1A0 3348      CPI	R20,0x38
+     1A1 F408      BCC	0x01A3
+     1A2 CFC6      RJMP	0x0169
+(0123) 		}
+(0124) 	}
+(0125) 	cf = 100;
+     1A3 E684      LDI	R24,0x64
+     1A4 9380 0112 STS	cf,R24
+     1A6 940C 020C JMP	pop_xgset300C
+(0126) }
+(0127) void playMusic(void)
+(0128) {
+_playMusic:
+     1A8 C033      RJMP	0x01DC
+(0129) while(1){
+(0130) 		if(PINB & 0x80){
+     1A9 9BB7      SBIS	0x16,7
+     1AA C004      RJMP	0x01AF
+(0131) 			cf = 0;
+     1AB 2422      CLR	R2
+     1AC 9220 0112 STS	cf,R2
+(0132) 			
+(0133) 		}else if(PINB & 0x40){
+     1AE C02D      RJMP	0x01DC
+     1AF 9BB6      SBIS	0x16,6
+     1B0 C004      RJMP	0x01B5
+(0134) 			cf = 1;
+     1B1 E081      LDI	R24,1
+     1B2 9380 0112 STS	cf,R24
+(0135) 			
+(0136) 		}else if(PINB & 0x20){
+     1B4 C027      RJMP	0x01DC
+     1B5 9BB5      SBIS	0x16,5
+     1B6 C004      RJMP	0x01BB
+(0137) 			cf = 2;
+     1B7 E082      LDI	R24,2
+     1B8 9380 0112 STS	cf,R24
+(0138) 			
+(0139) 		}else if(PINB & 0x10){
+     1BA C021      RJMP	0x01DC
+     1BB 9BB4      SBIS	0x16,4
+     1BC C004      RJMP	0x01C1
+(0140) 			cf = 3;
+     1BD E083      LDI	R24,3
+     1BE 9380 0112 STS	cf,R24
+(0141) 			
+(0142) 		}else if(PINB & 0x08){
+     1C0 C01B      RJMP	0x01DC
+     1C1 9BB3      SBIS	0x16,3
+     1C2 C004      RJMP	0x01C7
+(0143) 			cf = 4;
+     1C3 E084      LDI	R24,4
+     1C4 9380 0112 STS	cf,R24
+(0144) 			
+(0145) 		}else if(PINB & 0x04){
+     1C6 C015      RJMP	0x01DC
+     1C7 9BB2      SBIS	0x16,2
+     1C8 C004      RJMP	0x01CD
+(0146) 			cf = 5;
+     1C9 E085      LDI	R24,5
+     1CA 9380 0112 STS	cf,R24
+(0147) 			
+(0148) 		}else if(PINB & 0x02){
+     1CC C00F      RJMP	0x01DC
+     1CD 9BB1      SBIS	0x16,1
+     1CE C004      RJMP	0x01D3
+(0149) 			cf = 6;
+     1CF E086      LDI	R24,6
+     1D0 9380 0112 STS	cf,R24
+(0150) 			
+(0151) 		}else if(PINB & 0x01){
+     1D2 C009      RJMP	0x01DC
+     1D3 9BB0      SBIS	0x16,0
+     1D4 C004      RJMP	0x01D9
+(0152)  			cf = 7;
+     1D5 E087      LDI	R24,7
+     1D6 9380 0112 STS	cf,R24
+(0153) 			
+(0154) 		}else{
+     1D8 C003      RJMP	0x01DC
+(0155) 			cf = 100;
+     1D9 E684      LDI	R24,0x64
+     1DA 9380 0112 STS	cf,R24
+     1DC CFCC      RJMP	0x01A9
+     1DD 9508      RET
+_delay:
+  i                    --> R20
+  j                    --> R22
+  cnt                  --> R16
+     1DE 940E 0211 CALL	push_xgsetF000
+(0156) 			
+(0157) 		}
+(0158) 	}
+(0159) }
+(0160) void delay(int cnt){
+(0161) int i, j;
+(0162) for(i=0; i<cnt; i++){
+     1E0 2744      CLR	R20
+     1E1 2755      CLR	R21
+     1E2 C00A      RJMP	0x01ED
+(0163) for(j=0; j<600; j++) ;
+     1E3 2766      CLR	R22
+     1E4 2777      CLR	R23
+     1E5 5F6F      SUBI	R22,0xFF
+     1E6 4F7F      SBCI	R23,0xFF
+     1E7 3568      CPI	R22,0x58
+     1E8 E0E2      LDI	R30,2
+     1E9 077E      CPC	R23,R30
+     1EA F3D4      BLT	0x01E5
+     1EB 5F4F      SUBI	R20,0xFF
+     1EC 4F5F      SBCI	R21,0xFF
+     1ED 1740      CP	R20,R16
+     1EE 0751      CPC	R21,R17
+     1EF F39C      BLT	0x01E3
+     1F0 940C 0216 JMP	pop_xgsetF000
+(0164) }
+(0165) }
+(0166) //
+(0167) void main(void)
+(0168) {
+(0169)  init_devices();
+_main:
+     1F2 DF5E      RCALL	_init_devices
+     1F3 C001      RJMP	0x01F5
+(0170)  //insert your functional code here...
+(0171)  while(1) playPongdangsong();// playMusic();
+FILE: <library>
+     1F4 DF70      RCALL	_playPongdangsong
+     1F5 CFFE      RJMP	0x01F4
+     1F6 9508      RET
+empy16s:
+     1F7 920A      ST	R0,-Y
+     1F8 921A      ST	R1,-Y
+     1F9 938A      ST	R24,-Y
+     1FA 939A      ST	R25,-Y
+     1FB 9F02      MUL	R16,R18
+     1FC 01C0      MOVW	R24,R0
+     1FD 9F12      MUL	R17,R18
+     1FE 0D90      ADD	R25,R0
+     1FF 9F03      MUL	R16,R19
+     200 0D90      ADD	R25,R0
+     201 018C      MOVW	R16,R24
+     202 9199      LD	R25,Y+
+     203 9189      LD	R24,Y+
+     204 9019      LD	R1,Y+
+     205 9009      LD	R0,Y+
+     206 9508      RET
+push_xgset300C:
+     207 935A      ST	R21,-Y
+     208 934A      ST	R20,-Y
+     209 92BA      ST	R11,-Y
+     20A 92AA      ST	R10,-Y
+     20B 9508      RET
+pop_xgset300C:
+     20C 90A9      LD	R10,Y+
+     20D 90B9      LD	R11,Y+
+     20E 9149      LD	R20,Y+
+     20F 9159      LD	R21,Y+
+     210 9508      RET
+push_xgsetF000:
+     211 937A      ST	R23,-Y
+     212 936A      ST	R22,-Y
+     213 935A      ST	R21,-Y
+     214 934A      ST	R20,-Y
+     215 9508      RET
+pop_xgsetF000:
+     216 9149      LD	R20,Y+
+     217 9159      LD	R21,Y+
+     218 9169      LD	R22,Y+
+     219 9179      LD	R23,Y+
+     21A 9508      RET

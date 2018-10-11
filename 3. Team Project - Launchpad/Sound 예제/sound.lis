@@ -1,0 +1,1118 @@
+                        .module sound.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile sound.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile sound.c
+ 0000           _SoundState::
+ 0000                   .blkb 2
+                        .area idata
+ 0000 0100              .word 1
+                        .area data(ram, con, rel)
+ 0002                   .dbfile sound.c
+ 0002                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0002                   .dbsym e SoundState _SoundState I
+ 0002           _Soundonoff::
+ 0002                   .blkb 2
+                        .area idata
+ 0002 0100              .word 1
+                        .area data(ram, con, rel)
+ 0004                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0004                   .dbsym e Soundonoff _Soundonoff I
+ 0004           _Geurm::
+ 0004                   .blkb 2
+                        .area idata
+ 0004 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0006                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0006                   .blkb 2
+                        .area idata
+ 0006 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0008                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0008                   .blkb 2
+                        .area idata
+ 0008 4602              .word 582
+                        .area data(ram, con, rel)
+ 000A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 000A                   .blkb 2
+                        .area idata
+ 000A 4602              .word 582
+                        .area data(ram, con, rel)
+ 000C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 000C                   .blkb 2
+                        .area idata
+ 000C 4F02              .word 591
+                        .area data(ram, con, rel)
+ 000E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 000E                   .blkb 2
+                        .area idata
+ 000E 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0010                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0010                   .blkb 2
+                        .area idata
+ 0010 5E02              .word 606
+                        .area data(ram, con, rel)
+ 0012                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0012                   .blkb 2
+                        .area idata
+ 0012 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0014                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0014                   .blkb 2
+                        .area idata
+ 0014 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0016                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0016                   .blkb 2
+                        .area idata
+ 0016 5E02              .word 606
+                        .area data(ram, con, rel)
+ 0018                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0018                   .blkb 2
+                        .area idata
+ 0018 5E02              .word 606
+                        .area data(ram, con, rel)
+ 001A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 001A                   .blkb 2
+                        .area idata
+ 001A 6902              .word 617
+                        .area data(ram, con, rel)
+ 001C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 001C                   .blkb 2
+                        .area idata
+ 001C 4F02              .word 591
+                        .area data(ram, con, rel)
+ 001E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 001E                   .blkb 2
+                        .area idata
+ 001E 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0020                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0020                   .blkb 2
+                        .area idata
+ 0020 4602              .word 582
+                        .area data(ram, con, rel)
+ 0022                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0022                   .blkb 2
+                        .area idata
+ 0022 4602              .word 582
+                        .area data(ram, con, rel)
+ 0024                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0024                   .blkb 2
+                        .area idata
+ 0024 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0026                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0026                   .blkb 2
+                        .area idata
+ 0026 4F02              .word 591
+                        .area data(ram, con, rel)
+ 0028                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0028                   .blkb 2
+                        .area idata
+ 0028 5E02              .word 606
+                        .area data(ram, con, rel)
+ 002A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 002A                   .blkb 2
+                        .area idata
+ 002A 4F02              .word 591
+                        .area data(ram, con, rel)
+ 002C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 002C                   .blkb 2
+                        .area idata
+ 002C 5E02              .word 606
+                        .area data(ram, con, rel)
+ 002E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 002E                   .blkb 2
+                        .area idata
+ 002E 6902              .word 617
+                        .area data(ram, con, rel)
+ 0030                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0030                   .blkb 2
+                        .area idata
+ 0030 5E02              .word 606
+                        .area data(ram, con, rel)
+ 0032                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0032                   .blkb 2
+                        .area idata
+ 0032 7602              .word 630
+                        .area data(ram, con, rel)
+ 0034                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0034                   .blkb 52
+                        .area idata
+ 0034 00000000000000000000      .word 0,0,0,0,0
+ 003E 00000000000000000000      .word 0,0,0,0,0
+ 0048 00000000000000000000      .word 0,0,0,0,0
+ 0052 00000000000000000000      .word 0,0,0,0,0
+ 005C 00000000000000000000      .word 0,0,0,0,0
+ 0066 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0068                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0068                   .dbsym e Geurm _Geurm A[100:50]I
+ 0068           _DLY::
+ 0068                   .blkb 2
+                        .area idata
+ 0068 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 006A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 006A                   .blkb 2
+                        .area idata
+ 006A DC05              .word 1500
+                        .area data(ram, con, rel)
+ 006C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 006C                   .blkb 2
+                        .area idata
+ 006C DC05              .word 1500
+                        .area data(ram, con, rel)
+ 006E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 006E                   .blkb 2
+                        .area idata
+ 006E DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0070                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0070                   .blkb 2
+                        .area idata
+ 0070 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0072                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0072                   .blkb 2
+                        .area idata
+ 0072 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0074                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0074                   .blkb 2
+                        .area idata
+ 0074 B80B              .word 3000
+                        .area data(ram, con, rel)
+ 0076                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0076                   .blkb 2
+                        .area idata
+ 0076 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0078                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0078                   .blkb 2
+                        .area idata
+ 0078 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 007A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 007A                   .blkb 2
+                        .area idata
+ 007A DC05              .word 1500
+                        .area data(ram, con, rel)
+ 007C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 007C                   .blkb 2
+                        .area idata
+ 007C DC05              .word 1500
+                        .area data(ram, con, rel)
+ 007E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 007E                   .blkb 2
+                        .area idata
+ 007E 7017              .word 6000
+                        .area data(ram, con, rel)
+ 0080                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0080                   .blkb 2
+                        .area idata
+ 0080 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0082                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0082                   .blkb 2
+                        .area idata
+ 0082 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0084                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0084                   .blkb 2
+                        .area idata
+ 0084 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0086                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0086                   .blkb 2
+                        .area idata
+ 0086 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0088                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0088                   .blkb 2
+                        .area idata
+ 0088 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 008A                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 008A                   .blkb 2
+                        .area idata
+ 008A DC05              .word 1500
+                        .area data(ram, con, rel)
+ 008C                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 008C                   .blkb 2
+                        .area idata
+ 008C B80B              .word 3000
+                        .area data(ram, con, rel)
+ 008E                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 008E                   .blkb 2
+                        .area idata
+ 008E DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0090                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0090                   .blkb 2
+                        .area idata
+ 0090 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0092                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0092                   .blkb 2
+                        .area idata
+ 0092 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0094                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0094                   .blkb 2
+                        .area idata
+ 0094 DC05              .word 1500
+                        .area data(ram, con, rel)
+ 0096                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0096                   .blkb 2
+                        .area idata
+ 0096 7017              .word 6000
+                        .area data(ram, con, rel)
+ 0098                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0098                   .blkb 52
+                        .area idata
+ 0098 00000000000000000000      .word 0,0,0,0,0
+ 00A2 00000000000000000000      .word 0,0,0,0,0
+ 00AC 00000000000000000000      .word 0,0,0,0,0
+ 00B6 00000000000000000000      .word 0,0,0,0,0
+ 00C0 00000000000000000000      .word 0,0,0,0,0
+ 00CA 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 00CC                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 00CC                   .dbsym e DLY _DLY A[100:50]I
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0000                   .dbfunc e port_init _port_init fV
+                        .even
+ 0000           _port_init::
+ 0000                   .dbline -1
+ 0000                   .dbline 81
+ 0000           ; //ICC-AVR application builder : 2005-05-30 오전 1:48:51
+ 0000           ; // Target : M128
+ 0000           ; // Crystal: 16Mhz
+ 0000           ; //
+ 0000           ; // Made by New Technology Company(N.T.C) in Korea.
+ 0000           ; // DAEWOO RYU   
+ 0000           ; // Email : davidryu@newtc.co.kr
+ 0000           ; // 82-2-704-4774(TEL), 82-2-704-4733(FAX)
+ 0000           ; // http://www.NewTC.co.kr
+ 0000           ; //
+ 0000           ; 
+ 0000           ; 
+ 0000           ; #include <iom128v.h>
+ 0000           ; #include <macros.h>
+ 0000           ; #include <math.h>
+ 0000           ; //#include <stdio.h>
+ 0000           ; 
+ 0000           ; #define MaxLine       2
+ 0000           ; #define MaxCol        16
+ 0000           ; 
+ 0000           ; #define ON 1
+ 0000           ; #define OFF 2
+ 0000           ; #define DELAYTIME 1
+ 0000           ; #define DELAYTIME1 0
+ 0000           ; /* 주파수(Hz)
+ 0000           ; C1    523     // 도
+ 0000           ; C1_   554
+ 0000           ; D1    587     // 레
+ 0000           ; D1_   622
+ 0000           ; E1    659     // 미
+ 0000           ; F1    699     // 파   
+ 0000           ; F1_   740
+ 0000           ; G1    784     // 솔
+ 0000           ; G1_   831
+ 0000           ; A1    880     // 라
+ 0000           ; A1_   932
+ 0000           ; B1    988     // 시
+ 0000           ; 
+ 0000           ; C2    C1*2    // 도
+ 0000           ; C2_   C1_*2
+ 0000           ; D2    D1*2    // 레
+ 0000           ; D2_   D1_*2
+ 0000           ; E2    E1*2    // 미
+ 0000           ; F2    F1*2    // 파   
+ 0000           ; F2_   F1_*2
+ 0000           ; G2    G1*2    // 솔
+ 0000           ; G2_   G1_*2
+ 0000           ; A2    A2*2    // 라
+ 0000           ; A2_   A2_*2
+ 0000           ; B2    B2*2    // 시
+ 0000           ; */
+ 0000           ; 
+ 0000           ; #define C1    630     // 도
+ 0000           ; #define C1_   624
+ 0000           ; #define D1    617     // 레
+ 0000           ; #define D1_   611
+ 0000           ; #define E1    606     // 미
+ 0000           ; #define F1    600     // 파   
+ 0000           ; #define F1_   595
+ 0000           ; #define G1    591     // 솔
+ 0000           ; #define G1_   586
+ 0000           ; #define A1    582     // 라
+ 0000           ; #define A1_   578
+ 0000           ; #define B1    574     // 시
+ 0000           ; #define C2    571     // 높은 도
+ 0000           ; 
+ 0000           ; #define DLY_1 DLY_4*4 // 온음표 
+ 0000           ; #define DLY_2 DLY_4*2 // 2분 음표
+ 0000           ; #define DLY_4 1500    // 4분 음표 
+ 0000           ; #define DLY_8 DLY_4/2 // 8분 음표
+ 0000           ; #define DLY_16        DLY_8/2 // 16분 음표*/
+ 0000           ; 
+ 0000           ; 
+ 0000           ; 
+ 0000           ; volatile int SoundState=ON;
+ 0000           ; volatile int Soundonoff = ON;
+ 0000           ; volatile int Geurm[50] = {G1, G1, A1, A1, G1, G1, E1, G1,G1, E1, E1, D1, G1, G1, A1, A1, G1, G1, E1, G1, E1, D1, E1, C1,};
+ 0000           ; volatile int DLY[50] ={DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_2,DLY_4,DLY_4,DLY_4,DLY_4,DLY_1,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_4,DLY_2,DLY_4,DLY_4,DLY_4,DLY_4,DLY_1,}; 
+ 0000           ; 
+ 0000           ; void port_init(void)
+ 0000           ; {
+ 0000                   .dbline 82
+ 0000           ;  PORTA = 0x00;
+ 0000 2224              clr R2
+ 0002 2BBA              out 0x1b,R2
+ 0004                   .dbline 83
+ 0004           ;  DDRA  = 0xFF;
+ 0004 8FEF              ldi R24,255
+ 0006 8ABB              out 0x1a,R24
+ 0008                   .dbline 84
+ 0008           ;  PORTB = 0x00;
+ 0008 28BA              out 0x18,R2
+ 000A                   .dbline 85
+ 000A           ;  DDRB  = 0xff;
+ 000A 87BB              out 0x17,R24
+ 000C                   .dbline 86
+ 000C           ;  PORTC = 0x00; //m103 output only
+ 000C 25BA              out 0x15,R2
+ 000E                   .dbline 87
+ 000E           ;  DDRC  = 0xFF;
+ 000E 84BB              out 0x14,R24
+ 0010                   .dbline 88
+ 0010           ;  PORTD = 0x00;
+ 0010 22BA              out 0x12,R2
+ 0012                   .dbline 89
+ 0012           ;  DDRD  = 0xFF;
+ 0012 81BB              out 0x11,R24
+ 0014                   .dbline 90
+ 0014           ;  PORTE = 0x00;
+ 0014 23B8              out 0x3,R2
+ 0016                   .dbline 91
+ 0016           ;  DDRE  = 0x00;
+ 0016 22B8              out 0x2,R2
+ 0018                   .dbline 92
+ 0018           ;  PORTF = 0x00;
+ 0018 20926200          sts 98,R2
+ 001C                   .dbline 93
+ 001C           ;  DDRF  = 0x00;
+ 001C 20926100          sts 97,R2
+ 0020                   .dbline 94
+ 0020           ;  PORTG = 0x00;
+ 0020 20926500          sts 101,R2
+ 0024                   .dbline 95
+ 0024           ;  DDRG  = 0x1f;
+ 0024 8FE1              ldi R24,31
+ 0026 80936400          sts 100,R24
+ 002A                   .dbline -2
+ 002A           L1:
+ 002A                   .dbline 0 ; func end
+ 002A 0895              ret
+ 002C                   .dbend
+ 002C                   .dbfunc e timer0_init _timer0_init fV
+                        .even
+ 002C           _timer0_init::
+ 002C                   .dbline -1
+ 002C                   .dbline 103
+ 002C           ; }
+ 002C           ; 
+ 002C           ; //TIMER0 initialize - prescale:128
+ 002C           ; // WGM: CTC
+ 002C           ; // desired value: 800Hz
+ 002C           ; // actual value: 796.178Hz (-0.5%)
+ 002C           ; void timer0_init(void)
+ 002C           ; {
+ 002C                   .dbline 104
+ 002C           ;  TCCR0 = 0x00; //stop
+ 002C 2224              clr R2
+ 002E 23BE              out 0x33,R2
+ 0030                   .dbline 105
+ 0030           ;  ASSR  = 0x00; //set async mode
+ 0030 20BE              out 0x30,R2
+ 0032                   .dbline 106
+ 0032           ;  TCNT0 = 0x64; //set count
+ 0032 84E6              ldi R24,100
+ 0034 82BF              out 0x32,R24
+ 0036                   .dbline 107
+ 0036           ;  OCR0  = 0x9C;
+ 0036 8CE9              ldi R24,156
+ 0038 81BF              out 0x31,R24
+ 003A                   .dbline 108
+ 003A           ;  TCCR0 = 0x1D; //start timer
+ 003A 8DE1              ldi R24,29
+ 003C 83BF              out 0x33,R24
+ 003E                   .dbline -2
+ 003E           L2:
+ 003E                   .dbline 0 ; func end
+ 003E 0895              ret
+ 0040                   .dbend
+                        .area vector(rom, abs)
+                        .org 60
+ 003C 0C942000          jmp _timer0_comp_isr
+                        .area text(rom, con, rel)
+ 0040                   .dbfile C:\Users\davidryu\Desktop\Sound2\sound.c
+ 0040                   .dbfunc e timer0_comp_isr _timer0_comp_isr fV
+                        .even
+ 0040           _timer0_comp_isr::
+ 0040 2A92              st -y,R2
+ 0042 3A92              st -y,R3
+ 0044 8A93              st -y,R24
+ 0046 9A93              st -y,R25
+ 0048 2FB6              IN R2,63
+ 004A 2A92              st -y,R2
+ 004C                   .dbline -1
+ 004C                   .dbline 114
+ 004C           ; }
+ 004C           ; 
+ 004C           ; 
+ 004C           ; #pragma interrupt_handler timer0_comp_isr:iv_TIM0_COMP
+ 004C           ; void timer0_comp_isr(void)
+ 004C           ; {
+ 004C                   .dbline 116
+ 004C           ;  //compare occured TCNT0=OCR0
+ 004C           ;  PORTD = PORTD ^ 0x80;
+ 004C 80E8              ldi R24,128
+ 004E 90E0              ldi R25,0
+ 0050 22B2              in R2,0x12
+ 0052 3324              clr R3
+ 0054 2826              eor R2,R24
+ 0056 3926              eor R3,R25
+ 0058 22BA              out 0x12,R2
+ 005A                   .dbline -2
+ 005A           L3:
+ 005A                   .dbline 0 ; func end
+ 005A 2990              ld R2,y+
+ 005C 2FBE              OUT 63,R2
+ 005E 9991              ld R25,y+
+ 0060 8991              ld R24,y+
+ 0062 3990              ld R3,y+
+ 0064 2990              ld R2,y+
+ 0066 1895              reti
+ 0068                   .dbend
+ 0068                   .dbfunc e delay _delay fV
+ 0068           ;              i -> R20,R21
+ 0068           ;              j -> R22,R23
+ 0068           ;            cnt -> R16,R17
+                        .even
+ 0068           _delay::
+ 0068 0E940000          xcall push_xgsetF000
+ 006C                   .dbline -1
+ 006C                   .dbline 119
+ 006C           ; }
+ 006C           ; 
+ 006C           ; void delay(int cnt){
+ 006C                   .dbline 121
+ 006C           ;        int i, j;
+ 006C           ;        for(i=0; i<cnt; i++){
+ 006C 4427              clr R20
+ 006E 5527              clr R21
+ 0070 0AC0              xjmp L8
+ 0072           L5:
+ 0072                   .dbline 121
+ 0072                   .dbline 122
+ 0072           ;                 for(j=0; j<600; j++);
+ 0072 6627              clr R22
+ 0074 7727              clr R23
+ 0076           L9:
+ 0076                   .dbline 122
+ 0076           L10:
+ 0076                   .dbline 122
+ 0076 6F5F              subi R22,255  ; offset = 1
+ 0078 7F4F              sbci R23,255
+ 007A                   .dbline 122
+ 007A 6835              cpi R22,88
+ 007C E2E0              ldi R30,2
+ 007E 7E07              cpc R23,R30
+ 0080 D4F3              brlt L9
+ 0082           X0:
+ 0082                   .dbline 123
+ 0082           ;        }
+ 0082           L6:
+ 0082                   .dbline 121
+ 0082 4F5F              subi R20,255  ; offset = 1
+ 0084 5F4F              sbci R21,255
+ 0086           L8:
+ 0086                   .dbline 121
+ 0086 4017              cp R20,R16
+ 0088 5107              cpc R21,R17
+ 008A 9CF3              brlt L5
+ 008C           X1:
+ 008C                   .dbline -2
+ 008C           L4:
+ 008C                   .dbline 0 ; func end
+ 008C 0C940000          xjmp pop_xgsetF000
+ 0090                   .dbsym r i 20 I
+ 0090                   .dbsym r j 22 I
+ 0090                   .dbsym r cnt 16 I
+ 0090                   .dbend
+ 0090                   .dbfunc e init_devices _init_devices fV
+                        .even
+ 0090           _init_devices::
+ 0090                   .dbline -1
+ 0090                   .dbline 128
+ 0090           ; }
+ 0090           ; 
+ 0090           ; //call this routine to initialize all peripherals
+ 0090           ; void init_devices(void)
+ 0090           ; {
+ 0090                   .dbline 130
+ 0090           ;  //stop errant interrupts until set up
+ 0090           ;  CLI(); //disable all interrupts
+ 0090 F894              cli
+ 0092                   .dbline 131
+ 0092           ;  XDIV  = 0x00; //xtal divider
+ 0092 2224              clr R2
+ 0094 2CBE              out 0x3c,R2
+ 0096                   .dbline 132
+ 0096           ;  XMCRA = 0x00; //external memory
+ 0096 20926D00          sts 109,R2
+ 009A                   .dbline 133
+ 009A           ;  port_init();
+ 009A B2DF              xcall _port_init
+ 009C                   .dbline 134
+ 009C           ;  timer0_init();
+ 009C C7DF              xcall _timer0_init
+ 009E                   .dbline 136
+ 009E           ; 
+ 009E           ;  MCUCR = 0x00;
+ 009E 2224              clr R2
+ 00A0 25BE              out 0x35,R2
+ 00A2                   .dbline 137
+ 00A2           ;  EICRA = 0x00; //extended ext ints
+ 00A2 20926A00          sts 106,R2
+ 00A6                   .dbline 138
+ 00A6           ;  EICRB = 0x00; //extended ext ints
+ 00A6 2ABE              out 0x3a,R2
+ 00A8                   .dbline 139
+ 00A8           ;  EIMSK = 0x00;
+ 00A8 29BE              out 0x39,R2
+ 00AA                   .dbline 140
+ 00AA           ;  TIMSK = 0x02; //timer interrupt sources
+ 00AA 82E0              ldi R24,2
+ 00AC 87BF              out 0x37,R24
+ 00AE                   .dbline 141
+ 00AE           ;  ETIMSK = 0x00; //extended timer interrupt sources
+ 00AE 20927D00          sts 125,R2
+ 00B2                   .dbline 142
+ 00B2           ;  SEI(); //re-enable interrupts
+ 00B2 7894              sei
+ 00B4                   .dbline -2
+ 00B4           L13:
+ 00B4                   .dbline 0 ; func end
+ 00B4 0895              ret
+ 00B6                   .dbend
+ 00B6                   .dbfunc e sound _sound fV
+ 00B6           ;           freq -> R16,R17
+                        .even
+ 00B6           _sound::
+ 00B6                   .dbline -1
+ 00B6                   .dbline 146
+ 00B6           ;  //all peripherals are now initialized
+ 00B6           ; }
+ 00B6           ; 
+ 00B6           ; void sound(int freq){
+ 00B6                   .dbline 147
+ 00B6           ;  Soundonoff=ON; 
+ 00B6 81E0              ldi R24,1
+ 00B8 90E0              ldi R25,0
+ 00BA 90930300          sts _Soundonoff+1,R25
+ 00BE 80930200          sts _Soundonoff,R24
+ 00C2                   .dbline 148
+ 00C2           ;  OCR0 = freq;
+ 00C2 01BF              out 0x31,R16
+ 00C4                   .dbline -2
+ 00C4           L14:
+ 00C4                   .dbline 0 ; func end
+ 00C4 0895              ret
+ 00C6                   .dbsym r freq 16 I
+ 00C6                   .dbend
+ 00C6                   .dbfunc e nosound _nosound fV
+                        .even
+ 00C6           _nosound::
+ 00C6                   .dbline -1
+ 00C6                   .dbline 151
+ 00C6           ; }
+ 00C6           ; 
+ 00C6           ; void nosound(void){
+ 00C6                   .dbline 152
+ 00C6           ;  Soundonoff=OFF;
+ 00C6 82E0              ldi R24,2
+ 00C8 90E0              ldi R25,0
+ 00CA 90930300          sts _Soundonoff+1,R25
+ 00CE 80930200          sts _Soundonoff,R24
+ 00D2                   .dbline 153
+ 00D2           ;  OCR0 = 0;
+ 00D2 2224              clr R2
+ 00D4 21BE              out 0x31,R2
+ 00D6                   .dbline 154
+ 00D6           ;  delay(100);
+ 00D6 04E6              ldi R16,100
+ 00D8 10E0              ldi R17,0
+ 00DA                   .dbline -2
+ 00DA           L15:
+ 00DA                   .dbline 0 ; func end
+ 00DA C6CF              xjmp _delay
+ 00DC                   .dbend
+ 00DC                   .dbfunc e schoolsong2 _schoolsong2 fV
+ 00DC           ;              i -> R20,R21
+                        .even
+ 00DC           _schoolsong2::
+ 00DC 4A93              st -y,R20
+ 00DE 5A93              st -y,R21
+ 00E0                   .dbline -1
+ 00E0                   .dbline 157
+ 00E0           ; }
+ 00E0           ; 
+ 00E0           ; void schoolsong2(void){
+ 00E0                   .dbline 159
+ 00E0           ;        int i;
+ 00E0           ;        for(i=0;i<30;i++){
+ 00E0 4427              clr R20
+ 00E2 5527              clr R21
+ 00E4           L17:
+ 00E4                   .dbline 159
+ 00E4                   .dbline 160
+ 00E4           ;               sound(Geurm[i]);
+ 00E4 80E0              ldi R24,<_Geurm
+ 00E6 90E0              ldi R25,>_Geurm
+ 00E8 FA01              movw R30,R20
+ 00EA EE0F              lsl R30
+ 00EC FF1F              rol R31
+ 00EE E80F              add R30,R24
+ 00F0 F91F              adc R31,R25
+ 00F2 0081              ldd R16,z+0
+ 00F4 1181              ldd R17,z+1
+ 00F6 DFDF              xcall _sound
+ 00F8                   .dbline 161
+ 00F8           ;               delay(DLY[i]);
+ 00F8 80E0              ldi R24,<_DLY
+ 00FA 90E0              ldi R25,>_DLY
+ 00FC FA01              movw R30,R20
+ 00FE EE0F              lsl R30
+ 0100 FF1F              rol R31
+ 0102 E80F              add R30,R24
+ 0104 F91F              adc R31,R25
+ 0106 0081              ldd R16,z+0
+ 0108 1181              ldd R17,z+1
+ 010A AEDF              xcall _delay
+ 010C                   .dbline 162
+ 010C           ;               nosound();
+ 010C DCDF              xcall _nosound
+ 010E                   .dbline 163
+ 010E           ;        }       
+ 010E           L18:
+ 010E                   .dbline 159
+ 010E 4F5F              subi R20,255  ; offset = 1
+ 0110 5F4F              sbci R21,255
+ 0112                   .dbline 159
+ 0112 4E31              cpi R20,30
+ 0114 E0E0              ldi R30,0
+ 0116 5E07              cpc R21,R30
+ 0118 2CF3              brlt L17
+ 011A           X2:
+ 011A                   .dbline -2
+ 011A           L16:
+ 011A                   .dbline 0 ; func end
+ 011A 5991              ld R21,y+
+ 011C 4991              ld R20,y+
+ 011E 0895              ret
+ 0120                   .dbsym r i 20 I
+ 0120                   .dbend
+ 0120                   .dbfunc e schoolsong _schoolsong fV
+                        .even
+ 0120           _schoolsong::
+ 0120                   .dbline -1
+ 0120                   .dbline 166
+ 0120           ; }
+ 0120           ; 
+ 0120           ; void schoolsong(void){
+ 0120                   .dbline 167
+ 0120           ;      sound(G1);
+ 0120 0FE4              ldi R16,591
+ 0122 12E0              ldi R17,2
+ 0124 C8DF              xcall _sound
+ 0126                   .dbline 168
+ 0126           ;        delay(DLY_4);
+ 0126 0CED              ldi R16,1500
+ 0128 15E0              ldi R17,5
+ 012A 9EDF              xcall _delay
+ 012C                   .dbline 169
+ 012C           ;        nosound();
+ 012C CCDF              xcall _nosound
+ 012E                   .dbline 171
+ 012E           ;       
+ 012E           ;        sound(G1);
+ 012E 0FE4              ldi R16,591
+ 0130 12E0              ldi R17,2
+ 0132 C1DF              xcall _sound
+ 0134                   .dbline 172
+ 0134           ;        delay(DLY_4);
+ 0134 0CED              ldi R16,1500
+ 0136 15E0              ldi R17,5
+ 0138 97DF              xcall _delay
+ 013A                   .dbline 173
+ 013A           ;        nosound();
+ 013A C5DF              xcall _nosound
+ 013C                   .dbline 175
+ 013C           ;       
+ 013C           ;        sound(A1);
+ 013C 06E4              ldi R16,582
+ 013E 12E0              ldi R17,2
+ 0140 BADF              xcall _sound
+ 0142                   .dbline 176
+ 0142           ;        delay(DLY_4);
+ 0142 0CED              ldi R16,1500
+ 0144 15E0              ldi R17,5
+ 0146 90DF              xcall _delay
+ 0148                   .dbline 177
+ 0148           ;      nosound();
+ 0148 BEDF              xcall _nosound
+ 014A                   .dbline 179
+ 014A           ;       
+ 014A           ;        sound(A1);
+ 014A 06E4              ldi R16,582
+ 014C 12E0              ldi R17,2
+ 014E B3DF              xcall _sound
+ 0150                   .dbline 180
+ 0150           ;        delay(DLY_4);
+ 0150 0CED              ldi R16,1500
+ 0152 15E0              ldi R17,5
+ 0154 89DF              xcall _delay
+ 0156                   .dbline 181
+ 0156           ;      nosound();
+ 0156 B7DF              xcall _nosound
+ 0158                   .dbline 183
+ 0158           ;       
+ 0158           ;        sound(G1);
+ 0158 0FE4              ldi R16,591
+ 015A 12E0              ldi R17,2
+ 015C ACDF              xcall _sound
+ 015E                   .dbline 184
+ 015E           ;        delay(DLY_4);
+ 015E 0CED              ldi R16,1500
+ 0160 15E0              ldi R17,5
+ 0162 82DF              xcall _delay
+ 0164                   .dbline 185
+ 0164           ;        nosound();
+ 0164 B0DF              xcall _nosound
+ 0166                   .dbline 187
+ 0166           ;       
+ 0166           ;        sound(G1);
+ 0166 0FE4              ldi R16,591
+ 0168 12E0              ldi R17,2
+ 016A A5DF              xcall _sound
+ 016C                   .dbline 188
+ 016C           ;        delay(DLY_4);
+ 016C 0CED              ldi R16,1500
+ 016E 15E0              ldi R17,5
+ 0170 7BDF              xcall _delay
+ 0172                   .dbline 189
+ 0172           ;        nosound();
+ 0172 A9DF              xcall _nosound
+ 0174                   .dbline 191
+ 0174           ;       
+ 0174           ;        sound(E1);
+ 0174 0EE5              ldi R16,606
+ 0176 12E0              ldi R17,2
+ 0178 9EDF              xcall _sound
+ 017A                   .dbline 192
+ 017A           ;        delay(DLY_2);
+ 017A 08EB              ldi R16,3000
+ 017C 1BE0              ldi R17,11
+ 017E 74DF              xcall _delay
+ 0180                   .dbline 193
+ 0180           ;        nosound();
+ 0180 A2DF              xcall _nosound
+ 0182                   .dbline 195
+ 0182           ;        
+ 0182           ;        sound(G1);
+ 0182 0FE4              ldi R16,591
+ 0184 12E0              ldi R17,2
+ 0186 97DF              xcall _sound
+ 0188                   .dbline 196
+ 0188           ;        delay(DLY_4);
+ 0188 0CED              ldi R16,1500
+ 018A 15E0              ldi R17,5
+ 018C 6DDF              xcall _delay
+ 018E                   .dbline 197
+ 018E           ;        nosound();
+ 018E 9BDF              xcall _nosound
+ 0190                   .dbline 199
+ 0190           ;        
+ 0190           ;        sound(G1);
+ 0190 0FE4              ldi R16,591
+ 0192 12E0              ldi R17,2
+ 0194 90DF              xcall _sound
+ 0196                   .dbline 200
+ 0196           ;        delay(DLY_4);
+ 0196 0CED              ldi R16,1500
+ 0198 15E0              ldi R17,5
+ 019A 66DF              xcall _delay
+ 019C                   .dbline 201
+ 019C           ;        nosound();
+ 019C 94DF              xcall _nosound
+ 019E                   .dbline 203
+ 019E           ;        
+ 019E           ;        sound(E1);
+ 019E 0EE5              ldi R16,606
+ 01A0 12E0              ldi R17,2
+ 01A2 89DF              xcall _sound
+ 01A4                   .dbline 204
+ 01A4           ;        delay(DLY_4);
+ 01A4 0CED              ldi R16,1500
+ 01A6 15E0              ldi R17,5
+ 01A8 5FDF              xcall _delay
+ 01AA                   .dbline 205
+ 01AA           ;        nosound();
+ 01AA 8DDF              xcall _nosound
+ 01AC                   .dbline 207
+ 01AC           ;        
+ 01AC           ;        sound(E1);
+ 01AC 0EE5              ldi R16,606
+ 01AE 12E0              ldi R17,2
+ 01B0 82DF              xcall _sound
+ 01B2                   .dbline 208
+ 01B2           ;        delay(DLY_4);
+ 01B2 0CED              ldi R16,1500
+ 01B4 15E0              ldi R17,5
+ 01B6 58DF              xcall _delay
+ 01B8                   .dbline 209
+ 01B8           ;        nosound();
+ 01B8 86DF              xcall _nosound
+ 01BA                   .dbline 211
+ 01BA           ;        
+ 01BA           ;        sound(D1);
+ 01BA 09E6              ldi R16,617
+ 01BC 12E0              ldi R17,2
+ 01BE 7BDF              xcall _sound
+ 01C0                   .dbline 212
+ 01C0           ;        delay(DLY_1);
+ 01C0 00E7              ldi R16,6000
+ 01C2 17E1              ldi R17,23
+ 01C4 51DF              xcall _delay
+ 01C6                   .dbline 213
+ 01C6           ;        nosound();
+ 01C6 7FDF              xcall _nosound
+ 01C8                   .dbline 215
+ 01C8           ;        
+ 01C8           ;        sound(G1);
+ 01C8 0FE4              ldi R16,591
+ 01CA 12E0              ldi R17,2
+ 01CC 74DF              xcall _sound
+ 01CE                   .dbline 216
+ 01CE           ;        delay(DLY_4);
+ 01CE 0CED              ldi R16,1500
+ 01D0 15E0              ldi R17,5
+ 01D2 4ADF              xcall _delay
+ 01D4                   .dbline 217
+ 01D4           ;        nosound();
+ 01D4 78DF              xcall _nosound
+ 01D6                   .dbline 219
+ 01D6           ;        
+ 01D6           ;        sound(G1);
+ 01D6 0FE4              ldi R16,591
+ 01D8 12E0              ldi R17,2
+ 01DA 6DDF              xcall _sound
+ 01DC                   .dbline 220
+ 01DC           ;        delay(DLY_4);
+ 01DC 0CED              ldi R16,1500
+ 01DE 15E0              ldi R17,5
+ 01E0 43DF              xcall _delay
+ 01E2                   .dbline 221
+ 01E2           ;        nosound();
+ 01E2 71DF              xcall _nosound
+ 01E4                   .dbline 223
+ 01E4           ;        
+ 01E4           ;        sound(A1);
+ 01E4 06E4              ldi R16,582
+ 01E6 12E0              ldi R17,2
+ 01E8 66DF              xcall _sound
+ 01EA                   .dbline 224
+ 01EA           ;        delay(DLY_4);
+ 01EA 0CED              ldi R16,1500
+ 01EC 15E0              ldi R17,5
+ 01EE 3CDF              xcall _delay
+ 01F0                   .dbline 225
+ 01F0           ;        nosound();
+ 01F0 6ADF              xcall _nosound
+ 01F2                   .dbline 227
+ 01F2           ;        
+ 01F2           ;        sound(A1);
+ 01F2 06E4              ldi R16,582
+ 01F4 12E0              ldi R17,2
+ 01F6 5FDF              xcall _sound
+ 01F8                   .dbline 228
+ 01F8           ;        delay(DLY_4);
+ 01F8 0CED              ldi R16,1500
+ 01FA 15E0              ldi R17,5
+ 01FC 35DF              xcall _delay
+ 01FE                   .dbline 229
+ 01FE           ;        nosound();
+ 01FE 63DF              xcall _nosound
+ 0200                   .dbline 231
+ 0200           ;        
+ 0200           ;        sound(G1);
+ 0200 0FE4              ldi R16,591
+ 0202 12E0              ldi R17,2
+ 0204 58DF              xcall _sound
+ 0206                   .dbline 232
+ 0206           ;        delay(DLY_4);
+ 0206 0CED              ldi R16,1500
+ 0208 15E0              ldi R17,5
+ 020A 2EDF              xcall _delay
+ 020C                   .dbline 233
+ 020C           ;        nosound();
+ 020C 5CDF              xcall _nosound
+ 020E                   .dbline 235
+ 020E           ;        
+ 020E           ;        sound(G1);
+ 020E 0FE4              ldi R16,591
+ 0210 12E0              ldi R17,2
+ 0212 51DF              xcall _sound
+ 0214                   .dbline 236
+ 0214           ;        delay(DLY_4);
+ 0214 0CED              ldi R16,1500
+ 0216 15E0              ldi R17,5
+ 0218 27DF              xcall _delay
+ 021A                   .dbline 237
+ 021A           ;        nosound();
+ 021A 55DF              xcall _nosound
+ 021C                   .dbline 239
+ 021C           ;        
+ 021C           ;        sound(E1);
+ 021C 0EE5              ldi R16,606
+ 021E 12E0              ldi R17,2
+ 0220 4ADF              xcall _sound
+ 0222                   .dbline 240
+ 0222           ;        delay(DLY_2);
+ 0222 08EB              ldi R16,3000
+ 0224 1BE0              ldi R17,11
+ 0226 20DF              xcall _delay
+ 0228                   .dbline 241
+ 0228           ;        nosound();
+ 0228 4EDF              xcall _nosound
+ 022A                   .dbline 243
+ 022A           ;        
+ 022A           ;        sound(G1);
+ 022A 0FE4              ldi R16,591
+ 022C 12E0              ldi R17,2
+ 022E 43DF              xcall _sound
+ 0230                   .dbline 244
+ 0230           ;        delay(DLY_4);
+ 0230 0CED              ldi R16,1500
+ 0232 15E0              ldi R17,5
+ 0234 19DF              xcall _delay
+ 0236                   .dbline 245
+ 0236           ;        nosound();
+ 0236 47DF              xcall _nosound
+ 0238                   .dbline 247
+ 0238           ;        
+ 0238           ;        sound(E1);
+ 0238 0EE5              ldi R16,606
+ 023A 12E0              ldi R17,2
+ 023C 3CDF              xcall _sound
+ 023E                   .dbline 248
+ 023E           ;        delay(DLY_4);
+ 023E 0CED              ldi R16,1500
+ 0240 15E0              ldi R17,5
+ 0242 12DF              xcall _delay
+ 0244                   .dbline 249
+ 0244           ;        nosound();
+ 0244 40DF              xcall _nosound
+ 0246                   .dbline 251
+ 0246           ;        
+ 0246           ;        sound(D1);
+ 0246 09E6              ldi R16,617
+ 0248 12E0              ldi R17,2
+ 024A 35DF              xcall _sound
+ 024C                   .dbline 252
+ 024C           ;        delay(DLY_4);
+ 024C 0CED              ldi R16,1500
+ 024E 15E0              ldi R17,5
+ 0250 0BDF              xcall _delay
+ 0252                   .dbline 253
+ 0252           ;        nosound();
+ 0252 39DF              xcall _nosound
+ 0254                   .dbline 255
+ 0254           ;        
+ 0254           ;        sound(E1);
+ 0254 0EE5              ldi R16,606
+ 0256 12E0              ldi R17,2
+ 0258 2EDF              xcall _sound
+ 025A                   .dbline 256
+ 025A           ;        delay(DLY_4);
+ 025A 0CED              ldi R16,1500
+ 025C 15E0              ldi R17,5
+ 025E 04DF              xcall _delay
+ 0260                   .dbline 257
+ 0260           ;        nosound();
+ 0260 32DF              xcall _nosound
+ 0262                   .dbline 259
+ 0262           ;        
+ 0262           ;        sound(C1);
+ 0262 06E7              ldi R16,630
+ 0264 12E0              ldi R17,2
+ 0266 27DF              xcall _sound
+ 0268                   .dbline 260
+ 0268           ;        delay(DLY_1);
+ 0268 00E7              ldi R16,6000
+ 026A 17E1              ldi R17,23
+ 026C FDDE              xcall _delay
+ 026E                   .dbline 261
+ 026E           ;        nosound();      
+ 026E                   .dbline -2
+ 026E           L21:
+ 026E                   .dbline 0 ; func end
+ 026E 2BCF              xjmp _nosound
+ 0270                   .dbend
+ 0270                   .dbfunc e main _main fV
+                        .even
+ 0270           _main::
+ 0270                   .dbline -1
+ 0270                   .dbline 265
+ 0270           ; }
+ 0270           ; 
+ 0270           ; 
+ 0270           ; void main(void){
+ 0270                   .dbline 266
+ 0270           ;      init_devices();
+ 0270 0FDF              xcall _init_devices
+ 0272 03C0              xjmp L24
+ 0274           L26:
+ 0274                   .dbline 269
+ 0274           ;       
+ 0274           ;        while(1){
+ 0274           ;                while(1){              
+ 0274                   .dbline 270
+ 0274           ;                       schoolsong2();
+ 0274 33DF              xcall _schoolsong2
+ 0276                   .dbline 271
+ 0276           ;                       schoolsong();
+ 0276 54DF              xcall _schoolsong
+ 0278                   .dbline 272
+ 0278           ;                }               
+ 0278           L27:
+ 0278                   .dbline 269
+ 0278 FDCF              xjmp L26
+ 027A           L24:
+ 027A                   .dbline 268
+ 027A FECF              xjmp L27
+ 027C           X3:
+ 027C                   .dbline -2
+ 027C           L22:
+ 027C                   .dbline 0 ; func end
+ 027C 0895              ret
+ 027E                   .dbend
+ 027E           ;       }        
+ 027E           ; }

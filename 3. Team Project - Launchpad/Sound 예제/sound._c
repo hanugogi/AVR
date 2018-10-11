@@ -1,0 +1,312 @@
+//ICC-AVR application builder : 2005-05-30 오전 1:48:51
+// Target : M128
+// Crystal: 16Mhz
+//PORTC에 Data(DB0~DB7)
+//PORTD 0비트 : RS
+//      1비트 : RW
+//      2비트 : E 
+//PORTD 7,8비트 : Speaker
+//PORTD 6비트 : Siren
+//
+// Made by New Technology Company(N.T.C) in Korea.
+// DAEWOO RYU   
+// Email : davidryu@newtc.co.kr
+// 82-2-704-4774(TEL), 82-2-704-4733(FAX)
+// http://www.NewTC.co.kr
+//
+
+
+#include <iom128v.h>
+#include <macros.h>
+#include <math.h>
+//#include <stdio.h>
+
+#define MaxLine	2
+#define MaxCol	16
+
+#define ON 1
+#define OFF 2
+#define DELAYTIME 1
+#define DELAYTIME1 0
+#define C1	523	// 도
+#define C1_	554
+#define D1	587	// 레
+#define D1_	622
+#define E1	659	// 미
+#define F1	699	// 파	
+#define F1_	740
+#define G1	784	// 솔
+#define G1_	831
+#define A1	880	// 라
+#define A1_	932
+#define B1	988	// 시
+
+#define C2	C1*2	// 도
+#define C2_	C1_*2
+#define D2	D1*2	// 레
+#define D2_	D1_*2
+#define E2	E1*2	// 미
+#define F2	F1*2	// 파	
+#define F2_	F1_*2
+#define G2	G1*2	// 솔
+#define G2_	G1_*2
+#define A2	A2*2	// 라
+#define A2_	A2_*2
+#define B2	B2*2	// 시
+
+#define DLY_1	DLY_4*4 // 온음표 
+#define DLY_2	DLY_4*2	// 2분 음표
+#define DLY_4	400	// 4분 음표
+#define DLY_8	DLY_4/2	// 8분 음표
+#define DLY_16	DLY_8/2	// 16분 음표
+
+volatile long T1HIGHCNT=0xFD, T1LOWCNT=0x66;
+volatile int SoundState=ON;
+volatile int Soundonoff = ON;
+volatile char cf=100; 
+unsigned int noteon;
+char m_play[56] = {	0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+			0x04, 0x14, 0x24, 0x24, 0x04, 0x24, 0x42, 0x52, 0x44, 
+			0x58, 0x44, 0x24, 0x58, 0x44, 0x24, 0x14, 0x14, 0x04, 
+			0x14, 0x24, 0x44, 0x48, 0x54, 0x54, 0x44, 0x54, 0x74, 
+			0x74, 0x74, 0x44, 0x44, 0x24, 0x14, 0x08, 0x14, 0x22,
+			0x04, 0x24, 0x44, 0x44, 0x44, 0x14, 0x22, 0x32, 0x24, 
+			0x14, 0x04};
+unsigned int freq[9] = {0xc440, 0xcac4, 0xd095, 0xd33b, 0xd817, 0xdc7e, 0xe100, 0xe300, 0xe562};
+// printf 함수 사용시 추가할 것.
+/*int putchar(char c)
+{
+    while (((UCSR0A>>UDRE0)&0x01) == 0) ;  // UDRE, data register empty
+        
+    UDR0 = c;
+    return c;
+}
+
+// scanf 함수 사용시 추가할 것.
+int getchar(void)
+{
+    while ((UCSR0A & 0x80) == 0);
+    return UDR0;
+}
+*/
+void port_init(void)
+{
+ PORTA = 0x00;
+ DDRA  = 0xFF;
+ PORTB = 0x00;
+ DDRB  = 0x00;
+ PORTC = 0x00; //m103 output only
+ DDRC  = 0xFF;
+ PORTD = 0x00;
+ DDRD  = 0xFF;
+ PORTE = 0x00;
+ DDRE  = 0x00;
+ PORTF = 0x00;
+ DDRF  = 0x00;
+ PORTG = 0x00;
+ DDRG  = 0x1f;
+}
+
+
+
+
+//TIMER1 initialize - prescale:8
+// WGM: 0) Normal, TOP=0xFFFF
+// desired value: 3KHz
+// actual value:  3.003KHz (0.1%)
+void timer1_init(void)
+{
+ TCCR1B = 0x00; //stop
+ TCNT1H = 0xFD; //setup
+ TCNT1L = 0x66;
+ OCR1AH = 0x02;
+ OCR1AL = 0x9A;
+ OCR1BH = 0x02;
+ OCR1BL = 0x9A;
+ OCR1CH = 0x02;
+ OCR1CL = 0x9A;
+ ICR1H  = 0x02;
+ ICR1L  = 0x9A;
+ TCCR1A = 0x00;
+ TCCR1B = 0x02; //start Timer
+}
+
+#pragma interrupt_handler timer1_ovf_isr:iv_TIM1_OVF
+void timer1_ovf_isr(void)
+{
+ //TIMER1 has overflowed
+ TCNT1H = (freq[cf]>>8) & 0xff; //reload counter high value
+ TCNT1L = (freq[cf]) & 0xff; //reload counter low value
+ if(cf < 9){
+		PORTG = PORTG ^ 0x10;
+	}else{
+		PORTG = PORTG & 0xef;
+	}
+ }
+
+
+void delay(int delaytime){
+    int i,j;
+	for(i=0;i<=1000;i++){
+		for(j=0;j<=delaytime;j++){
+		}
+	}
+}
+
+//call this routine to initialize all peripherals
+void init_devices(void)
+{
+ //stop errant interrupts until set up
+ CLI(); //disable all interrupts
+ XDIV  = 0x00; //xtal divider
+ XMCRA = 0x00; //external memory
+ port_init();
+ timer1_init();
+
+ MCUCR = 0x80;
+ EICRA = 0x00; //extended ext ints
+ EICRB = 0x00; //extended ext ints
+ EIMSK = 0x00;
+ TIMSK = 0x04; //timer interrupt sources
+ ETIMSK = 0x00; //extended timer interrupt sources
+ SEI(); //re-enable interrupts
+ //all peripherals are now initialized
+}
+
+void sound(int freq){
+ Soundonoff=ON; 
+ T1HIGHCNT = (0xFFFF-floor(1000000/freq))/0x100;
+ T1LOWCNT = 0xFFFF-floor(1000000/freq) - 0xFF00;
+}
+
+void nosound(void){
+ Soundonoff=OFF;
+ delay(10);
+}
+void playPongdangsong(void)
+{
+	char i;
+	int period;
+	//lcd_puts(2, "PongDang Song   ");
+	for(i=0; i<56; i++){
+		cf = (m_play[i]>>4) & 0x0f;
+		period = (m_play[i] & 0x0f) * 1000;
+
+		if(PINB & 0x40){
+			cf = 100;
+			break;
+		}
+	}
+	cf = 100;
+}
+
+void schoolsong(void){
+     sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(A1);
+	 delay(DLY_4);
+     nosound();
+	
+	 sound(A1);
+	 delay(DLY_4);
+     nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	
+	 sound(E1);
+	 delay(DLY_2);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(D1);
+	 delay(DLY_1);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(A1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(A1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_2);
+	 nosound();
+	 
+	 sound(G1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(D1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(E1);
+	 delay(DLY_4);
+	 nosound();
+	 
+	 sound(C1);
+	 delay(DLY_1);
+	 nosound();	 
+}
+
+void main(void){
+	 int i, delayustime=50;
+     init_devices();
+	
+	 while(1){
+		 while(1){		 	
+			//schoolsong();
+			playPongdangsong();	
+			delay(5);			
+		 }		 
+	}	 
+}
