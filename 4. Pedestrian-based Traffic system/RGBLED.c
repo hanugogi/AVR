@@ -33,7 +33,7 @@ void RGBLED_Red(){
 }
 
 void RGBLED_Orange(){
-	RGBLED(0xFF, 0x7F, 0x00);
+	RGBLED(0xF8, 0x9B, 0x00);
 	
 }
 
