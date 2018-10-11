@@ -37,6 +37,6 @@ void RGBLED_Orange(){
 	
 }
 
-void RGBLED_Yellow(){
+void RGBLED_Green(){
 	RGBLED(0x00, 0xFF, 0x00);	
 }
