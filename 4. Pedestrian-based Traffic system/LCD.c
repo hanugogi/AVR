@@ -60,6 +60,8 @@ void DATA(unsigned char byte){
 }
 
 void LCD_Init(){
+	DDRD = 0xff;
+	
 	_delay_ms(30);
 	
 	COMMAND(0x28);
@@ -81,4 +83,9 @@ void DATA_Str(char *str){
 	}
 }
 
-void DATA_Num(int )
+void DATA_Num(int num){
+	char *temp;
+	sprintf(temp, "%d", num);
+	
+	DATA_Str(temp);
+}

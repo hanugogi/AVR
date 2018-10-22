@@ -9,7 +9,7 @@
 #include <avr/interrupt.h>
 
 char XorY = 0;
-int coordinate[2] = {0, 0};
+extern int coordinate[2] = {0, 0};
 
 ISR(ADC_vect){
 	switch (XorY){

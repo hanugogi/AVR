@@ -10,7 +10,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-extern char flag = 0; 
+extern char flag = 0;
+int coordinate[2];
 
 int main(void){
 	
@@ -18,12 +19,19 @@ int main(void){
 	Joystick_Init();
 	RGBLED_Init();
 	
-	while (1){
+	LCD_Init();
+	DATA_Str("Hello");
+	/*while(1){
 		if(!flag)
 			TrafficControler();
-		DATA_Str("X: ");
-		DATA_Str("Y: ");
-	}
+		else{
+			DATA_Str("X: ");
+			DATA_Num(coordinate[0]);
+			DATA_Str("Y: ");
+			DATA_Num(coordinate[1]);
+			COMMAND(0x01);
+		}
+	}*/
 }
 
 void TrafficControler(void){

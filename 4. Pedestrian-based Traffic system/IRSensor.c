@@ -16,8 +16,6 @@ ISR(INT4_vect){
 	RGBLED(255, 255, 255);
 	flag = 1;
 	EIMSK |= 0b00010000;	//INT4 Enable again
-	
-	exit(1);
 }
 
 void IRSensor_Init(void){
