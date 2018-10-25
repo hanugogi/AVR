@@ -8,14 +8,15 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-extern char flag;
+volatile extern char flag = 0;
 
 ISR(INT4_vect){
 	EIMSK &= 0b11101111;	//INT4 Disable
 	
 	RGBLED(255, 255, 255);
 	flag = 1;
-	EIMSK |= 0b00010000;	//INT4 Enable again
+	
+	main();
 }
 
 void IRSensor_Init(void){
