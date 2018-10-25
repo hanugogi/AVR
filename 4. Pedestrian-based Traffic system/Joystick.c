@@ -6,10 +6,11 @@
  */ 
 
 #include <avr/io.h>
+#include <util/delay.h>
 #include <avr/interrupt.h>
 
 char XorY = 0;
-extern int coordinate[2] = {0, 0};
+int coordinate[2] = {-10, -10};
 
 ISR(ADC_vect){
 	switch (XorY){
@@ -22,21 +23,23 @@ ISR(ADC_vect){
 void Joystick_Init(void){
 	DDRF = 0x00;
 	
-	ADMUX = 0b01000000;		//AVCC, ADC0
-	ADCSRA = 0b10001110;	//ADC INT Enable, 64 Div
+	ADMUX = 0b10000000;		//AVCC, ADC0
+	ADCSRA = 0b10001101;	//ADC INT Enable, 64 Div
 	
 	sei();
+	
+	ADCSRA |= 0x04;
 }
 
 int* Joystick_Read(void){
 	XorY = 112;
-	ADMUX &= 0b11100000;	//Select ADC0
-	ADCSRA |= 1 << ADSC;	//Start ADC0 Conversion
+	ADMUX &= 0b11100000;	//Reset ADCMUX
+	ADCSRA |= 0x40;			//Start ADC0 Conversion
 	
 	XorY = 113;
-	ADMUX &= 0b11100000;	//Reset Mux
+	ADMUX &= 0b11100000;	//Reset ADCMUX
 	ADMUX |= 0b00000001;	//Select ADC1
-	ADCSRA |= 1 << ADSC;	//Start ADC0 Conversion
+	ADCSRA |= 0x40;			//Start ADC0 Conversion
 	
 	return coordinate;
 }
