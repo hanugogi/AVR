@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-volatile extern char flag = 0;
+extern char flag = 0;
 
 ISR(INT4_vect){
 	EIMSK &= 0b11101111;	//INT4 Disable
