@@ -5,25 +5,25 @@
  * Author : KHW
  */ 
 
-#define F_CPU 16000000UL
-
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
 
-volatile extern char flag;
-int *coordinate;
-
 void TrafficControler(void);
 
+extern char flag;
+
 int main(void){
-	char *strX;
-	char *strY;
+	char str[16];
+	int *coordinate;
 	
+	IRSensor_Init();
+	Joystick_Init();
+	LCD_Init();
+		
 	if(!flag){
-		IRSensor_Init();
-		Joystick_Init();
+		
 		RGBLED_Init();
-		LCD_Init();
 		
 		_delay_ms(10);
 		DATA_Str("Hello");
@@ -34,18 +34,14 @@ int main(void){
 			TrafficControler();
 		else{
 			COMMAND(0x01);
-			_delay_ms(10);
+			_delay_ms(25);
 			
 			coordinate = Joystick_Read();
 			
-			itoa(coordinate[0], strX, 10);
-			itoa(coordinate[1], strY, 10);
+			sprintf(str, "X: %4d  Y: %4d", coordinate[0], coordinate[1]);
 			
-			COMMAND(0x80);
-			DATA_Str(strX);
-			COMMAND(0xC0);
-			DATA_Str(strY);
-			_delay_ms(990);
+			DATA_Str(str);
+			_delay_ms(500);
 		}
 	}
 }
