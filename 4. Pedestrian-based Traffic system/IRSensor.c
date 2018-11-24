@@ -1,4 +1,4 @@
-﻿/*
+﻿	/*
  * IRSensor.c
  *
  * Created: 2018-10-11 오전 10:18:12
@@ -12,15 +12,13 @@ extern char flag = 0;
 
 ISR(INT4_vect){
 	EIMSK &= 0b11101111;	//INT4 Disable
+	TIMSK &= ~(0x01);		//TIM0 Ovf Disable
 	
-	RGBLED(255, 255, 255);
 	flag = 1;
-	
-	main();
 }
 
 void IRSensor_Init(void){
-	DDRE &= 0xEF;
+	DDRE = 0x00;
 	
 	EICRB |= 0b00000011;
 	EIMSK |= 0b00010000;

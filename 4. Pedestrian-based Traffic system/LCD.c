@@ -5,13 +5,9 @@
  *  Author: KHW
  */ 
 
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
-
-void COMMAND(unsigned char byte);
-void DATA(unsigned char byte);
-void DATA_Str(char *str);
-void LCD_Init(void);
 
 void COMMAND(unsigned char byte){
 	_delay_ms(2);
@@ -83,9 +79,9 @@ void DATA_Str(char *str){
 	}
 }
 
-void DATA_Num(int num){
-	char *temp;
-	sprintf(temp, "%d", num);
+void DATA_Num(long num){
+	char temp[16];
+	sprintf(temp, "%ld", num);
 	
 	DATA_Str(temp);
 }
